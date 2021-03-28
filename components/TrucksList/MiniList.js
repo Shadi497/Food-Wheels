@@ -1,6 +1,6 @@
 //React Imports
 import React from "react";
-import { View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 //Styles
 import {
@@ -11,9 +11,11 @@ import {
 } from "./styles";
 
 export default function MiniList() {
+  const navigation = useNavigation();
+
   return (
     <MiniListView>
-      <TruckCard>
+      <TruckCard onPress={() => navigation.navigate("Detail")}>
         <TruckImageStyle
           source={{
             uri:
@@ -23,7 +25,7 @@ export default function MiniList() {
         <TruckLabelStyle>Trap Kitchen</TruckLabelStyle>
       </TruckCard>
 
-      <TruckCard>
+      <TruckCard button onPress={() => navigation.navigate("Detail")}>
         <TruckImageStyle
           source={{
             uri: "https://cdn.5280.com/2020/12/Courtesy-Downtown-Fingers.jpg",

@@ -15,7 +15,7 @@ export default function TrucksHome() {
   const navigation = useNavigation();
 
   return (
-    <View style={{ backgroundColor: "#DCDCDC", height: "100%" }}>
+    <View style={{ backgroundColor: "#e5e4e2", height: "100%" }}>
       <ScrollView>
         <Header>
           <Icon

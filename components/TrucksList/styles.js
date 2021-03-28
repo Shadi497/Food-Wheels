@@ -1,5 +1,16 @@
 import styled from "styled-components/native";
 
+export const Search = styled.View`
+  width: 70%;
+  margin-top: 12%;
+  padding-left: 5%;
+  align-items: center;
+  align-self: center;
+  flex-direction: row;
+  background-color: #d3d3d3;
+  border-radius: 25px;
+`;
+
 export const CardContainer = styled.View`
   justify-content: center;
   flex-direction: row;
@@ -19,11 +30,11 @@ export const Card = styled.View`
   elevation: 12;
 `;
 
-export const TruckCard = styled.View`
+export const TruckCard = styled.TouchableOpacity`
   background-color: white;
   flex-direction: row;
-  margin-left: 25px;
-  margin-bottom: 25px;
+  align-self: center;
+  margin-bottom: 8%;
   border-radius: 10px;
   width: 85%;
   height: 90px;
@@ -51,7 +62,7 @@ export const ListView = styled.View`
   flex-direction: column;
   display: flex;
   margin-bottom: 10%;
-  margin-top: 15%;
+  margin-top: 12%;
 `;
 
 export const TruckImageStyle = styled.Image`
