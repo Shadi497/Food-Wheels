@@ -6,12 +6,14 @@ export const SignButtonStyle = styled(Button)`
   width: 30%;
   align-items: center;
   justify-content: center;
+  border-radius: 250px;
 `;
 
 export const ButtonStyle = styled.Button`
   margin: 60% 15% 10% 34%;
   align-items: center;
   justify-content: center;
+  border-radius: 250px;
 `;
 
 export const Signin = styled.View`
@@ -56,6 +58,7 @@ export const Errtext = styled.Text`
   margin-top: 5px;
   font-size: 12px;
   color: #ff0d10;
+  text-align: center;
 `;
 
 export const TxtLast = styled.Text`

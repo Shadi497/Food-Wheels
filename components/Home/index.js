@@ -1,35 +1,12 @@
 //React imports
-import { ImageBackground, Text, ToastAndroid, View } from "react-native";
+import { View } from "react-native";
 import React from "react";
-import { Icon } from "native-base";
-import { useDispatch, useSelector } from "react-redux";
-
-//Styles
-import { Title, ButtonStyle, HomeBackground, ButtonView } from "./styles";
-
 import { Button } from "react-native-paper";
 
-//Actions imports
-import {
-  // clearProfile,
-  // profile,
-  signout,
-} from "../../store/actions/authActions";
+//Styles
+import { Title, HomeBackground } from "./styles";
 
 const Home = ({ navigation }) => {
-  const dispatch = useDispatch();
-
-  // const user = useSelector((state) => state.authReducer.user);
-  // const checkProfile = useSelector((state) => state.authReducer.profile);
-  // checkProfile === null && user && dispatch(profile(user.username));
-
-  const Out = async (event) => {
-    event.preventDefault();
-    await dispatch(signout());
-    // await dispatch(clearProfile());
-    ToastAndroid.show(`See you soon 😔`, ToastAndroid.SHORT, ToastAndroid.TOP);
-  };
-
   return (
     <View style={{ flex: 1, backgroundColor: "tomato" }}>
       <Title>Food On Wheels</Title>
@@ -53,7 +30,7 @@ const Home = ({ navigation }) => {
           fontWeight: "bold",
         }}
         color="white"
-        onPress={() => navigation.replace("TrucksList")}
+        onPress={() => navigation.replace("TrucksHome")}
       >
         Get Started
       </Button>

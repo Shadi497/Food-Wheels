@@ -1,6 +1,6 @@
 //React imports
 import React, { useState } from "react";
-import { Text, ToastAndroid, View } from "react-native";
+import { ToastAndroid, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
@@ -17,7 +17,6 @@ import {
   Errtext,
   LabelStyle,
   TxtInputIcon,
-  TxtLast,
 } from "./styles";
 
 //Verification
@@ -100,10 +99,10 @@ export default function SignUp() {
                     onChangeText={handleChange("username")}
                     onBlur={() => setFieldTouched("username")}
                   />
-                  {touched.username && errors.username && (
-                    <Errtext>{errors.username}</Errtext>
-                  )}
                 </TxtInputIcon>
+                {touched.username && errors.username && (
+                  <Errtext>{errors.username}</Errtext>
+                )}
               </View>
               <View style={{ marginBottom: 25 }}>
                 <LabelStyle>Password</LabelStyle>
@@ -115,10 +114,10 @@ export default function SignUp() {
                     onBlur={() => setFieldTouched("password")}
                     secureTextEntry={true}
                   />
-                  {touched.password && errors.password && (
-                    <Errtext>{errors.password}</Errtext>
-                  )}
                 </TxtInputIcon>
+                {touched.password && errors.password && (
+                  <Errtext>{errors.password}</Errtext>
+                )}
               </View>
 
               <View style={{ marginBottom: 25 }}>
@@ -136,10 +135,10 @@ export default function SignUp() {
                     onBlur={() => setFieldTouched("email")}
                     keyboardType="email-address"
                   />
-                  {touched.email && errors.email && (
-                    <Errtext>{errors.email}</Errtext>
-                  )}
                 </TxtInputIcon>
+                {touched.email && errors.email && (
+                  <Errtext>{errors.email}</Errtext>
+                )}
               </View>
 
               <View style={{ marginBottom: 25 }}>
@@ -156,10 +155,10 @@ export default function SignUp() {
                     onChangeText={handleChange("firstName")}
                     onBlur={() => setFieldTouched("firstName")}
                   />
-                  {touched.firstName && errors.firstName && (
-                    <Errtext>{errors.firstName}</Errtext>
-                  )}
                 </TxtInputIcon>
+                {touched.firstName && errors.firstName && (
+                  <Errtext>{errors.firstName}</Errtext>
+                )}
               </View>
 
               <View style={{ marginBottom: 25 }}>
@@ -176,10 +175,10 @@ export default function SignUp() {
                     onChangeText={handleChange("lastName")}
                     onBlur={() => setFieldTouched("lastName")}
                   />
-                  {touched.lastName && errors.lastName && (
-                    <Errtext>{errors.lastName}</Errtext>
-                  )}
                 </TxtInputIcon>
+                {touched.lastName && errors.lastName && (
+                  <Errtext>{errors.lastName}</Errtext>
+                )}
               </View>
 
               <View style={{ marginBottom: 25 }}>
@@ -197,10 +196,10 @@ export default function SignUp() {
                     onBlur={() => setFieldTouched("phoneNumber")}
                     keyboardType="phone-pad"
                   />
-                  {touched.phoneNumber && errors.phoneNumber && (
-                    <Errtext>{errors.phoneNumber}</Errtext>
-                  )}
                 </TxtInputIcon>
+                {touched.phoneNumber && errors.phoneNumber && (
+                  <Errtext>{errors.phoneNumber}</Errtext>
+                )}
               </View>
 
               <ButtonStyle
@@ -211,11 +210,6 @@ export default function SignUp() {
                   user.username && user.password ? OnSubmit : handleSubmit
                 }
               />
-
-              {/* <TxtLast onPress={() => navigation.navigate("SignIn")}>
-                Have an account?
-                <Text style={{ fontWeight: "bold" }}> Sign In!</Text>
-              </TxtLast> */}
             </View>
           )}
         </Formik>

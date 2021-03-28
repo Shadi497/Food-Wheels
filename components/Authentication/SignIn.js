@@ -1,6 +1,6 @@
 //React imports
 import React, { useState } from "react";
-import { Text, ToastAndroid, View } from "react-native";
+import { ToastAndroid, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { ScrollView } from "react-native-gesture-handler";
@@ -17,7 +17,6 @@ import {
   Errtext,
   LabelStyle,
   TxtInputIcon,
-  TxtLast,
 } from "./styles";
 
 //Verification
@@ -62,7 +61,7 @@ export default function SignIn() {
             password: yup
               .string()
               .min(8, "Password must be more than 8 chars.")
-              .required(),
+              .required("Password is required!"),
           })}
         >
           {({
@@ -75,7 +74,13 @@ export default function SignIn() {
             handleSubmit,
           }) => (
             <View>
-              <View style={{ marginBottom: 25 }}>
+              <View
+                style={{
+                  marginBottom: 25,
+                  flexDirection: "column",
+                  display: "flex",
+                }}
+              >
                 <LabelStyle>UserName</LabelStyle>
                 <TxtInputIcon>
                   <Icon
@@ -89,10 +94,10 @@ export default function SignIn() {
                     onChangeText={handleChange("username")}
                     onBlur={() => setFieldTouched("username")}
                   />
-                  {touched.username && errors.username && (
-                    <Errtext>{errors.username}</Errtext>
-                  )}
                 </TxtInputIcon>
+                {touched.username && errors.username && (
+                  <Errtext>{errors.username}</Errtext>
+                )}
               </View>
               <View style={{ marginBottom: 25 }}>
                 <LabelStyle>Password</LabelStyle>
@@ -104,13 +109,14 @@ export default function SignIn() {
                     onBlur={() => setFieldTouched("password")}
                     secureTextEntry={true}
                   />
-                  {touched.password && errors.password && (
-                    <Errtext>{errors.password}</Errtext>
-                  )}
                 </TxtInputIcon>
+                {touched.password && errors.password && (
+                  <Errtext>{errors.password}</Errtext>
+                )}
               </View>
 
               <ButtonStyle
+                rounded
                 title="Submit"
                 color="tomato"
                 disabled={!isValid}
@@ -118,10 +124,6 @@ export default function SignIn() {
                   user.username && user.password ? OnSubmit : handleSubmit
                 }
               />
-              {/* <TxtLast onPress={() => navigation.navigate("SignUp")}>
-                Don't have an account?
-                <Text style={{ fontWeight: "bold" }}> Sign Up!</Text>
-              </TxtLast> */}
             </View>
           )}
         </Formik>
