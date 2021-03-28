@@ -1,7 +1,10 @@
+//React Imports
 import * as React from "react";
-import { Text, View, Image } from "react-native";
+import { View, Image } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+
+//Components
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import img from "./foodtruck.png";

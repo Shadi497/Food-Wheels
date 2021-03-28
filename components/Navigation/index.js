@@ -9,9 +9,13 @@ import { useNavigation } from "@react-navigation/native";
 //Components
 import ImageBar from "./ImageBar";
 import Home from "../Home";
-import TrucksList from "../TrucksList";
+import TrucksHome from "../TrucksHome";
+import TrucksDetail from "../TrucksDetail";
+
 import { Image, View } from "react-native";
 import { Icon } from "react-native-elements";
+import Profile from "../Profile";
+import TrucksList from "../TrucksList";
 
 export const AuthenticationNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
@@ -30,18 +34,16 @@ export const AuthenticationNavigator = () => {
   );
 };
 
-export const HomeNavigator = () => {
+export const ProfileNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
   const navigation = useNavigation();
 
   return (
     <Navigator screenOptions={{ headerTitleAlign: "center" }}>
-      <Screen name="Home" component={Home} options={{ headerShown: false }} />
       <Screen
-        name="TrucksList"
-        component={TrucksList}
+        name="Profile"
+        component={Profile}
         options={{
-          title: "List",
           headerLeft: () => (
             <View style={{ marginLeft: 15 }}>
               <Icon
@@ -58,9 +60,25 @@ export const HomeNavigator = () => {
   );
 };
 
-export const ListNavigator = () => {
+export const HomeNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
-  const navigation = useNavigation();
+
+  return (
+    <Navigator screenOptions={{ headerTitleAlign: "center" }}>
+      <Screen name="Home" component={Home} options={{ headerShown: false }} />
+      <Screen
+        name="TrucksHome"
+        component={TrucksHome}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Navigator>
+  );
+};
+
+export const TrucksListNavigator = () => {
+  const { Navigator, Screen } = createStackNavigator();
 
   return (
     <Navigator screenOptions={{ headerTitleAlign: "center" }}>
@@ -68,14 +86,31 @@ export const ListNavigator = () => {
         name="TrucksList"
         component={TrucksList}
         options={{
-          title: "List",
+          headerShown: false,
+        }}
+      />
+    </Navigator>
+  );
+};
+
+export const TruckNavigator = () => {
+  const { Navigator, Screen } = createStackNavigator();
+  const navigation = useNavigation();
+
+  return (
+    <Navigator screenOptions={{ headerTitleAlign: "center" }}>
+      <Screen
+        name="TrucksDetail"
+        component={TrucksDetail}
+        options={{
+          title: "Detail",
           headerLeft: () => (
             <View style={{ marginLeft: 15 }}>
               <Icon
-                type="font-awesome-5"
-                name="grip-lines"
+                type="ionicon"
+                name="caret-back-outline"
                 size={25}
-                onPress={() => navigation.openDrawer()}
+                onPress={() => navigation.goBack()}
               />
             </View>
           ),
