@@ -58,3 +58,22 @@ export const checkToken = () => async (dispatch) => {
     }
   }
 };
+
+export const profile = () => async (dispatch) => {
+  try {
+    const res = await instance.get("/profile");
+    dispatch({
+      type: "FETCH_PROFILE",
+      payload: res.data,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const clearProfile = () => {
+  return {
+    type: "FETCH_PROFILE",
+    payload: null,
+  };
+};

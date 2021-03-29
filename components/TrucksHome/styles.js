@@ -38,6 +38,11 @@ export const LabelStyle = styled.Text`
   font-weight: bold;
 `;
 
+export const MainView = styled.View`
+  background-color: #e5e4e2;
+  height: 100%;
+`;
+
 export const TxtStyle = styled.Text`
   text-align: left;
   margin-top: 50px;

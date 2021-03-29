@@ -44,16 +44,7 @@ export const ProfileNavigator = () => {
         name="Profile"
         component={Profile}
         options={{
-          headerLeft: () => (
-            <View style={{ marginLeft: 15 }}>
-              <Icon
-                type="font-awesome-5"
-                name="grip-lines"
-                size={25}
-                onPress={() => navigation.openDrawer()}
-              />
-            </View>
-          ),
+          headerShown: false,
         }}
       />
     </Navigator>

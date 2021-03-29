@@ -9,7 +9,7 @@ import { ToastAndroid } from "react-native";
 import { useDispatch } from "react-redux";
 
 //Actions
-import { signout } from "../../store/actions/authActions";
+import { clearProfile, signout } from "../../store/actions/authActions";
 
 export default function DrawerContent(props) {
   const getActiveRouteState = function (routes, index, name) {
@@ -23,7 +23,7 @@ export default function DrawerContent(props) {
   const Out = async (event) => {
     event.preventDefault();
     await dispatch(signout());
-    // await dispatch(clearProfile());
+    await dispatch(clearProfile());
     ToastAndroid.show(`See you soon 😔`, ToastAndroid.SHORT, ToastAndroid.TOP);
   };
 
@@ -65,7 +65,7 @@ export default function DrawerContent(props) {
               icon={({ color, size }) => (
                 <Icon name="account-outline" color={color} size={size} />
               )}
-              label={users ? "Profile" : "Sign In"}
+              label={users ? "My Profile" : "Sign In"}
               labelStyle={{ fontWeight: "bold" }}
               onPress={() => {
                 props.navigation.navigate(users ? "Profile" : "Authentication");
