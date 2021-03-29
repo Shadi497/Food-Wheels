@@ -2,7 +2,9 @@ import styled from "styled-components/native";
 
 export const Search = styled.View`
   width: 70%;
+  height: 10%;
   margin-top: 12%;
+  margin-bottom: 9%;
   padding-left: 5%;
   align-items: center;
   align-self: center;
@@ -14,6 +16,11 @@ export const Search = styled.View`
 export const CardContainer = styled.View`
   justify-content: center;
   flex-direction: row;
+`;
+
+export const MainView = styled.View`
+  background-color: #e5e4e2;
+  height: 100%;
 `;
 export const Card = styled.View`
   background-color: white;
@@ -62,7 +69,6 @@ export const ListView = styled.View`
   flex-direction: column;
   display: flex;
   margin-bottom: 10%;
-  margin-top: 12%;
 `;
 
 export const TruckImageStyle = styled.Image`

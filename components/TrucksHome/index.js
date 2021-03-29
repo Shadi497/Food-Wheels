@@ -3,19 +3,27 @@ import React from "react";
 import { View, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-elements";
+import { useSelector, useDispatch } from "react-redux";
 
 //Components
 import CategoriesCards from "./CategoriesCards";
 import MiniList from "../TrucksList/MiniList";
 
 //Styles
-import { TxtStyle, More, Header } from "./styles";
+import { TxtStyle, More, Header, MainView } from "./styles";
+
+//Actions
+import { profile } from "../../store/actions/authActions";
 
 export default function TrucksHome() {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
+  const user = useSelector((state) => state.authReducer.user);
+  const checkProfile = useSelector((state) => state.authReducer.profile);
+  checkProfile === null && user && dispatch(profile(user.username));
 
   return (
-    <View style={{ backgroundColor: "#e5e4e2", height: "100%" }}>
+    <MainView>
       <ScrollView>
         <Header>
           <Icon
@@ -35,6 +43,6 @@ export default function TrucksHome() {
         </View>
         <MiniList />
       </ScrollView>
-    </View>
+    </MainView>
   );
 }

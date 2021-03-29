@@ -40,7 +40,7 @@ export default function SignUp() {
   const OnSubmit = (event) => {
     event.preventDefault();
     dispatch(signup(user));
-    navigation.replace("Home");
+    navigation.jumpTo("Home");
     ToastAndroid.show(`Welcome ${user.username} 👋`, ToastAndroid.SHORT);
   };
 

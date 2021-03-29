@@ -37,13 +37,9 @@ export default function SignIn() {
   const OnSubmit = async (event) => {
     event.preventDefault();
     await dispatch(signin(user));
-    navigation.replace("Home");
+    navigation.jumpTo("Home");
     if (users !== "null") {
-      ToastAndroid.show(
-        `Hi ${user.username} 👋`,
-        ToastAndroid.SHORT,
-        ToastAndroid.TOP
-      );
+      ToastAndroid.show(`Hi ${user.username} 👋`, ToastAndroid.SHORT);
     }
   };
 

@@ -1,6 +1,6 @@
 //React Imports
 import React, { useState } from "react";
-import { View, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-elements";
 
@@ -14,8 +14,10 @@ import {
   ListView,
   Header,
   Search,
+  MainView,
 } from "./styles";
 import { Input } from "native-base";
+import { TextInput } from "react-native";
 
 export default function TrucksList() {
   const navigation = useNavigation();
@@ -49,7 +51,7 @@ export default function TrucksList() {
     ));
 
   return (
-    <View style={{ backgroundColor: "#e5e4e2", height: "100%" }}>
+    <MainView>
       <ScrollView>
         <Header>
           <Icon
@@ -61,11 +63,25 @@ export default function TrucksList() {
         </Header>
         <Search>
           <Icon type="ionicon" name="search-sharp" size={25} />
-          <Input placeholder="  Search..." onChangeText={setQuery} />
+          <TextInput
+            clearButtonMode="always"
+            placeholder="  Search..."
+            onChangeText={setQuery}
+            value={query}
+            style={{
+              width: "70%",
+            }}
+          />
+          <Icon
+            type="materialicons"
+            name="clear"
+            size={25}
+            onPress={() => setQuery("")}
+          />
         </Search>
 
         <ListView>{list}</ListView>
       </ScrollView>
-    </View>
+    </MainView>
   );
 }
