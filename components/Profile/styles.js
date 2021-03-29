@@ -70,11 +70,14 @@ export const TxtInputIcon = styled.View`
   align-items: center;
 `;
 
+export const EView = styled.View`
+  margin-bottom: 15%;
+`;
+
 export const AuthTextInput = styled.TextInput`
-  align-self: stretch;
   text-align: left;
-  height: 40px;
-  width: 120px;
+  height: 120%;
+  width: 75%;
   border-bottom-width: 1px;
   font-weight: bold;
   margin-left: 5%;
@@ -82,8 +85,15 @@ export const AuthTextInput = styled.TextInput`
 
 export const HeaderLabel = styled.Text`
   font-size: 12px;
-  margin-left: 15%;
+  margin-left: 20%;
   color: gray;
+`;
+
+export const EditLabel = styled.Text`
+  font-size: 22px;
+  align-self: center;
+  font-weight: bold;
+  margin-bottom: 15%;
 `;
 
 export const ModalStyles = StyleSheet.create({
@@ -91,15 +101,14 @@ export const ModalStyles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
   },
   modalView: {
     width: "70%",
-    height: "60%",
+    height: "80%",
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 35,
+    paddingTop: 35,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {

@@ -77,3 +77,17 @@ export const clearProfile = () => {
     payload: null,
   };
 };
+
+export const profileEdit = (updatedProfile) => {
+  return async (dispatch) => {
+    try {
+      const res = await instance.put("/profile/edit", updatedProfile);
+      dispatch({
+        type: "UPDATE_PROFILE",
+        payload: { updatedProfile: res.data },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

@@ -17,13 +17,15 @@ import {
   InfoView,
 } from "./styles";
 import { useSelector } from "react-redux";
+
+//Components
 import UpdateModal from "./UpdateModal";
 
 export default function Profile() {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   const checkProfile = useSelector((state) => state.authReducer.profile);
-
+  const [user, setUser] = useState(checkProfile);
   return (
     checkProfile && (
       <MainView>
@@ -55,7 +57,7 @@ export default function Profile() {
             <Icon
               type="material-community"
               name="circle-edit-outline"
-              iconStyle={{ marginLeft: "40%" }}
+              iconStyle={{ marginLeft: "32%" }}
               size={25}
               onPress={() => setModalVisible(true)}
             />
@@ -64,6 +66,8 @@ export default function Profile() {
           <UpdateModal
             modalVisible={modalVisible}
             setModalVisible={setModalVisible}
+            user={user}
+            setUser={setUser}
           />
           <TxtStyle>Favourite Trucks</TxtStyle>
 
