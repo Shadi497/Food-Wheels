@@ -28,6 +28,7 @@ export default function TrucksHome() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.user);
   const checkProfile = useSelector((state) => state.authReducer.profile);
+  const categories = useSelector((state) => state.categoryReducer.category);
   checkProfile === null && user && dispatch(profile(user.username));
 
   return (
@@ -43,7 +44,7 @@ export default function TrucksHome() {
         </Header>
         {/* {user && <UserLocation state={state} setstate={setstate} />} */}
         <TxtStyle>Categories</TxtStyle>
-        <CategoriesCards />
+        <CategoriesCards categories={categories} />
         <View style={{ flexDirection: "row" }}>
           <TxtStyle>Food Trucks</TxtStyle>
           <More onPress={() => navigation.navigate("TrucksList")}>
