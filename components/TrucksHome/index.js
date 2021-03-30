@@ -29,6 +29,8 @@ export default function TrucksHome() {
   const user = useSelector((state) => state.authReducer.user);
   const checkProfile = useSelector((state) => state.authReducer.profile);
   const categories = useSelector((state) => state.categoryReducer.category);
+  const trucks = useSelector((state) => state.trucksReducer.trucks);
+
   checkProfile === null && user && dispatch(profile(user.username));
 
   return (
@@ -42,7 +44,10 @@ export default function TrucksHome() {
             onPress={() => navigation.openDrawer()}
           />
         </Header>
+
+        {/*     User Location*    /}
         {/* {user && <UserLocation state={state} setstate={setstate} />} */}
+
         <TxtStyle>Categories</TxtStyle>
         <CategoriesCards categories={categories} />
         <View style={{ flexDirection: "row" }}>
@@ -51,7 +56,7 @@ export default function TrucksHome() {
             View More
           </More>
         </View>
-        <MiniList />
+        <MiniList trucks={trucks.slice(0, 2)} />
       </ScrollView>
     </MainView>
   );

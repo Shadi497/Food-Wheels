@@ -1,15 +1,14 @@
 const initialState = {
-  category: [],
+  trucks: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_CATEGORY":
+    case "TRUCKS_LIST":
       return {
         ...state,
-        category: action.payload,
+        trucks: action.payload,
       };
-
     default:
       return state;
   }

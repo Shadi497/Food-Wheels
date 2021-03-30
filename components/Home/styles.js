@@ -14,6 +14,11 @@ export const TopStyling = styled.View`
   height: 40%;
 `;
 
+export const MainView = styled.View`
+  flex: 1;
+  background-color: tomato;
+`;
+
 export const Title = styled.Text`
   color: white;
   font-size: 38px;

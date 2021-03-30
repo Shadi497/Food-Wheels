@@ -66,3 +66,16 @@ export const TxtLast = styled.Text`
   margin-bottom: 45px;
   align-self: center;
 `;
+
+export const IndexView = styled.View`
+  background-color: white;
+`;
+
+export const IndexImage = styled.Image`
+  width: 170px;
+  height: 90px;
+  margin-top: 18%;
+  margin-bottom: 9%;
+  border-radius: 20px;
+  align-self: center;
+`;

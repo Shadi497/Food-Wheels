@@ -4,6 +4,7 @@ import { ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-elements";
 import UserAvatar from "react-native-user-avatar";
+import { useSelector } from "react-redux";
 
 //Styles
 import {
@@ -16,7 +17,6 @@ import {
   LabelStyle,
   InfoView,
 } from "./styles";
-import { useSelector } from "react-redux";
 
 //Components
 import UpdateModal from "./UpdateModal";
@@ -57,7 +57,7 @@ export default function Profile() {
             <Icon
               type="material-community"
               name="circle-edit-outline"
-              iconStyle={{ marginLeft: "32%" }}
+              iconStyle={{ marginLeft: "28%" }}
               size={25}
               onPress={() => setModalVisible(true)}
             />
@@ -70,10 +70,6 @@ export default function Profile() {
             setUser={setUser}
           />
           <TxtStyle>Favourite Trucks</TxtStyle>
-
-          {/* <Button mode="contained" onPress={() => navigation.navigate("Detail")}>
-          Detail
-        </Button> */}
         </ScrollView>
       </MainView>
     )

@@ -1,3 +1,4 @@
+//React Imports
 import React from "react";
 import { View, Text, Button } from "react-native";
 import Modal from "react-native-modal";
@@ -22,15 +23,11 @@ export default function UserLocation({ state, setstate }) {
       setstate({ location });
     } catch (error) {
       let status = Location.getProviderStatusAsync();
-      console.log("status", status);
       if (!status.locationServicesEnabled) {
         setstate({ isLocationModalVisible: true });
       }
     }
   };
-
-  let status = Location.getProviderStatusAsync();
-  console.log("status", status);
 
   let text = "Waiting..";
   if (state.errorMessage) {
@@ -38,8 +35,6 @@ export default function UserLocation({ state, setstate }) {
   } else if (state.location) {
     text = `${state.location.coords.latitude} ${state.location.coords.longitude}`;
   }
-
-  console.log(state.location);
 
   return (
     <Modal isVisible={state.location ? false : true}>

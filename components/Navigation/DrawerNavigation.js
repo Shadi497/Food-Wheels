@@ -6,6 +6,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 //Components
 import {
   AuthenticationNavigator,
+  CategoryTrucksListNavigator,
   HomeNavigator,
   ProfileNavigator,
   TruckNavigator,
@@ -36,6 +37,10 @@ export const DrawerNavigator = () => {
         <Drawer.Screen name="Profile" component={ProfileNavigator} />
         <Drawer.Screen name="Detail" component={TruckNavigator} />
         <Drawer.Screen name="TrucksList" component={TrucksListNavigator} />
+        <Drawer.Screen
+          name="CategoryTrucksList"
+          component={CategoryTrucksListNavigator}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );

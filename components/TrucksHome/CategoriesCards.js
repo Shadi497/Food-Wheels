@@ -1,16 +1,28 @@
+//React Imports
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native";
+import { useDispatch } from "react-redux";
+
+//Actions
+import { getTrucksByCategory } from "../../store/actions/categorytruckActions";
+
+//Styles
 import { CardContainer, Card, ImageStyle, LabelStyle } from "./styles";
 
 export default function CategoriesCards({ categories }) {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   const categoriesList = categories.map((category) => (
-    <Card>
-      <ImageStyle
-        source={{
-          uri:
-            "https://images.deliveryhero.io/image/talabat/MenuItems/Beef_burger_637140934410362990.jpg",
-        }}
-      />
+    <Card
+      key={category.id}
+      onPress={() => {
+        dispatch(getTrucksByCategory(category.id)),
+          navigation.navigate("CategoryTrucksList");
+      }}
+    >
+      <ImageStyle source={{ uri: category.image }} />
       <LabelStyle>{category.name}</LabelStyle>
     </Card>
   ));
