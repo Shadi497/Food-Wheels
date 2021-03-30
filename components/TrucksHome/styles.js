@@ -1,3 +1,4 @@
+import { StyleSheet } from "react-native";
 import styled from "styled-components/native";
 
 export const CardContainer = styled.View`
@@ -62,3 +63,36 @@ export const More = styled.Text`
   color: tomato;
   font-weight: bold;
 `;
+
+export const ModalStyles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalView: {
+    width: "80%",
+    paddingHorizontal: "3%",
+    height: "40%",
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    paddingTop: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  textStyle: {
+    color: "black",
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 17,
+    marginBottom: 35,
+  },
+});
