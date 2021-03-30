@@ -13,13 +13,12 @@ export const DrawerNavigator = () => {
 
   return (
     <>
-      {/* <Text></Text> */}
       <NavigationContainer>
         <Drawer.Navigator
           drawerStyle={{
             width: "65%",
             paddingTop: "25%",
-            backgroundColor: "#ff917e",
+            backgroundColor: "#2ecc71",
           }}
           drawerType="back"
           drawerContentOptions={{
@@ -29,7 +28,7 @@ export const DrawerNavigator = () => {
           }}
         >
           <Drawer.Screen
-            name="Login IN / Sign UP"
+            name="Login in / Signup"
             component={AuthenticationNavigator}
           />
           <Drawer.Screen name="Home" component={HomeNavigator} />

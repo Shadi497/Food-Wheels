@@ -19,7 +19,7 @@ export default function Authentication() {
         <Image
           source={img}
           style={{
-            width: 150,
+            width: 180,
             height: 90,
             marginTop: "18%",
             marginBottom: "12%",
