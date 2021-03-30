@@ -16,14 +16,16 @@ import {
   MainView,
 } from "./styles";
 
-export default function TrucksList() {
+export default function CategoryTruckList() {
   const navigation = useNavigation();
   const [query, setQuery] = useState("");
-  const trucks = useSelector((state) => state.trucksReducer.trucks);
+  const trucks = useSelector((state) => state.categorytruckReducer.trucks);
 
-  const list = trucks
-    .filter((truck) => truck.name.toLowerCase().includes(query.toLowerCase()))
-    .map((truck) => (
+  let list;
+  if (trucks.FoodTrucks.length > 0) {
+    list = trucks.FoodTrucks.filter((truck) =>
+      truck.name.toLowerCase().includes(query.toLowerCase())
+    ).map((truck) => (
       <TruckCard key={truck.id} onPress={() => navigation.navigate("Detail")}>
         {/* <TruckImageStyle
           source={{
@@ -33,6 +35,7 @@ export default function TrucksList() {
         <TruckLabelStyle>{truck.name}</TruckLabelStyle>
       </TruckCard>
     ));
+  }
 
   return (
     <MainView>
@@ -63,7 +66,6 @@ export default function TrucksList() {
             onPress={() => setQuery("")}
           />
         </Search>
-
         <ListView>{list}</ListView>
       </ScrollView>
     </MainView>

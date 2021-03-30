@@ -1,14 +1,13 @@
 //React imports
-import { View } from "react-native";
 import React from "react";
 import { Button } from "react-native-paper";
 
 //Styles
-import { Title, HomeBackground } from "./styles";
+import { Title, HomeBackground, MainView } from "./styles";
 
 const Home = ({ navigation }) => {
   return (
-    <View style={{ flex: 1, backgroundColor: "tomato" }}>
+    <MainView>
       <Title>Food On Wheels</Title>
       <HomeBackground
         source={{
@@ -34,7 +33,7 @@ const Home = ({ navigation }) => {
       >
         Get Started
       </Button>
-    </View>
+    </MainView>
   );
 };
 

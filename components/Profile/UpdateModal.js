@@ -37,7 +37,6 @@ export default function UpdateModal({
       animationType="fade"
       transparent={true}
       visible={modalVisible}
-      // statusBarTranslucent
       onRequestClose={() => {
         setModalVisible(!modalVisible);
       }}

@@ -9,28 +9,17 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import img from "./foodtruck.png";
 
+//Styles
+import { IndexView, IndexImage } from "./styles";
+
 export default function Authentication() {
   const Tab = createMaterialTopTabNavigator();
 
   return (
     <>
-      <View
-        style={{
-          backgroundColor: "white",
-        }}
-      >
-        <Image
-          source={img}
-          style={{
-            width: 150,
-            height: 90,
-            marginTop: "18%",
-            marginBottom: "12%",
-            borderRadius: 40 / 2,
-            alignSelf: "center",
-          }}
-        />
-      </View>
+      <IndexView>
+        <IndexImage source={img} />
+      </IndexView>
 
       <Tab.Navigator
         screenOptions={({ route }) => ({

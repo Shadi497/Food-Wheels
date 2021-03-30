@@ -5,7 +5,7 @@ export const CardContainer = styled.View`
   justify-content: center;
   flex-direction: row;
 `;
-export const Card = styled.View`
+export const Card = styled.TouchableOpacity`
   background-color: white;
   align-items: center;
   margin-right: 45px;

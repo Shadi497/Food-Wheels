@@ -1,11 +1,11 @@
 import instance from "./instance";
 
-export const getCategory = () => {
+export const getTrucksByCategory = (categoryId) => {
   return async (dispatch) => {
     try {
-      const res = await instance.get("/category");
+      const res = await instance.get(`/foodtruck/category/${categoryId}`);
       dispatch({
-        type: "GET_CATEGORY",
+        type: "GET_TRUCK_BY_CATEGORY",
         payload: res.data,
       });
     } catch (error) {

@@ -1,21 +1,18 @@
 //React Imports
-import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import { useSelector } from "react-redux";
+import { createStackNavigator } from "@react-navigation/stack";
 import Authentication from "../Authentication";
-import { NavigationContainer } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+import { View } from "react-native";
+import { Icon } from "react-native-elements";
 
 //Components
-import ImageBar from "./ImageBar";
 import Home from "../Home";
 import TrucksHome from "../TrucksHome";
 import TrucksDetail from "../TrucksDetail";
-
-import { Image, View } from "react-native";
-import { Icon } from "react-native-elements";
 import Profile from "../Profile";
 import TrucksList from "../TrucksList";
+import CategoryTruckList from "../CategoryTruckList";
 
 export const AuthenticationNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
@@ -27,7 +24,6 @@ export const AuthenticationNavigator = () => {
         component={Authentication}
         options={{
           headerShown: false,
-          headerBackImage: () => <ImageBar />,
         }}
       />
     </Navigator>
@@ -76,6 +72,22 @@ export const TrucksListNavigator = () => {
       <Screen
         name="TrucksList"
         component={TrucksList}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Navigator>
+  );
+};
+
+export const CategoryTrucksListNavigator = () => {
+  const { Navigator, Screen } = createStackNavigator();
+
+  return (
+    <Navigator screenOptions={{ headerTitleAlign: "center" }}>
+      <Screen
+        name="TrucksList"
+        component={CategoryTruckList}
         options={{
           headerShown: false,
         }}

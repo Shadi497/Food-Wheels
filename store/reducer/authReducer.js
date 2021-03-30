@@ -1,7 +1,6 @@
 const initialState = {
   user: null,
   profile: null,
-  // booking: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,7 +14,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         profile: action.payload,
-        //   booking: action.payload ? action.payload.booking : null,
       };
 
     case "UPDATE_PROFILE":

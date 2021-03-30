@@ -1,12 +1,13 @@
 //React Imports
+import React from "react";
 import { Title, Drawer } from "react-native-paper";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
-import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ToastAndroid } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { useSelector } from "react-redux";
-import { ToastAndroid } from "react-native";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+//Styles
+import { styles } from "./styles";
 
 //Actions
 import { clearProfile, signout } from "../../store/actions/authActions";
@@ -91,18 +92,3 @@ export default function DrawerContent(props) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 22,
-    fontWeight: "bold",
-    alignSelf: "center",
-    marginTop: "5%",
-    marginBottom: "15%",
-  },
-  bottomDrawerSection: {
-    marginBottom: 15,
-    borderTopColor: "#f4f4f4",
-    borderTopWidth: 1,
-  },
-});
