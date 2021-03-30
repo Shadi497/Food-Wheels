@@ -1,5 +1,5 @@
 //React Imports
-import React from "react";
+import React, { useState } from "react";
 import { View, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-elements";
@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 //Components
 import CategoriesCards from "./CategoriesCards";
 import MiniList from "../TrucksList/MiniList";
+import UserLocation from "./UserLocation";
 
 //Styles
 import { TxtStyle, More, Header, MainView } from "./styles";
@@ -16,8 +17,15 @@ import { TxtStyle, More, Header, MainView } from "./styles";
 import { profile } from "../../store/actions/authActions";
 
 export default function TrucksHome() {
-  const dispatch = useDispatch();
   const navigation = useNavigation();
+
+  const [state, setstate] = useState({
+    location: null,
+    errorMessage: null,
+    isLocationModalVisible: true,
+  });
+
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.user);
   const checkProfile = useSelector((state) => state.authReducer.profile);
   checkProfile === null && user && dispatch(profile(user.username));
@@ -33,6 +41,7 @@ export default function TrucksHome() {
             onPress={() => navigation.openDrawer()}
           />
         </Header>
+        {/* {user && <UserLocation state={state} setstate={setstate} />} */}
         <TxtStyle>Categories</TxtStyle>
         <CategoriesCards />
         <View style={{ flexDirection: "row" }}>
