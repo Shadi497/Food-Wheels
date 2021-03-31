@@ -45,8 +45,7 @@ export default function TrucksHome() {
           />
         </Header>
 
-        {/*     User Location*    /}
-        {/* {user && <UserLocation state={state} setstate={setstate} />} */}
+        {user && <UserLocation state={state} setstate={setstate} />}
 
         <TxtStyle>Categories</TxtStyle>
         <CategoriesCards categories={categories} />
