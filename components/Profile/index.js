@@ -1,10 +1,13 @@
 //React Imports
-import React, { useState } from "react";
-import { ScrollView } from "react-native";
+import React, { useCallback, useState } from "react";
+import { ScrollView, RefreshControl } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-elements";
 import UserAvatar from "react-native-user-avatar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+//Actions
+import { profile } from "../../store/actions/authActions";
 
 //Styles
 import {
@@ -20,16 +23,36 @@ import {
 
 //Components
 import UpdateModal from "./UpdateModal";
+import { View } from "react-native";
+import FavouriteTrucks from "./FavoriteTrucks";
 
 export default function Profile() {
+  const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   const checkProfile = useSelector((state) => state.authReducer.profile);
   const [user, setUser] = useState(checkProfile);
+
+  const [refreshing, setRefreshing] = useState(false);
+
+  const wait = (timeout) => {
+    return new Promise((resolve) => setTimeout(resolve, timeout));
+  };
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    dispatch(profile(user.username));
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
+
   return (
     checkProfile && (
       <MainView>
-        <ScrollView>
+        <ScrollView
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+        >
           <Header>
             <Icon
               type="ionicon"
@@ -40,8 +63,16 @@ export default function Profile() {
             />
             <HeaderTxt>My Profile</HeaderTxt>
           </Header>
-          <TxtStyle>Information</TxtStyle>
-
+          <View style={{ flexDirection: "row", width: "100%" }}>
+            <TxtStyle>Information</TxtStyle>
+            <Icon
+              type="material-community"
+              name="circle-edit-outline"
+              iconStyle={{ marginTop: "28%", marginLeft: "45%" }}
+              size={25}
+              onPress={() => setModalVisible(true)}
+            />
+          </View>
           <Card>
             <UserAvatar
               size={50}
@@ -54,13 +85,6 @@ export default function Profile() {
               <InfoStyle>{`${checkProfile.email}`}</InfoStyle>
               <InfoStyle>{`${checkProfile.phoneNumber}`}</InfoStyle>
             </InfoView>
-            <Icon
-              type="material-community"
-              name="circle-edit-outline"
-              iconStyle={{ marginLeft: "28%" }}
-              size={25}
-              onPress={() => setModalVisible(true)}
-            />
           </Card>
 
           <UpdateModal
@@ -70,6 +94,7 @@ export default function Profile() {
             setUser={setUser}
           />
           <TxtStyle>Favourite Trucks</TxtStyle>
+          <FavouriteTrucks />
         </ScrollView>
       </MainView>
     )

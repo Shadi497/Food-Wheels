@@ -106,17 +106,7 @@ export const TruckNavigator = () => {
         name="TrucksDetail"
         component={TrucksDetail}
         options={{
-          title: "Detail",
-          headerLeft: () => (
-            <View style={{ marginLeft: 15 }}>
-              <Icon
-                type="ionicon"
-                name="caret-back-outline"
-                size={25}
-                onPress={() => navigation.goBack()}
-              />
-            </View>
-          ),
+          headerShown: false,
         }}
       />
     </Navigator>

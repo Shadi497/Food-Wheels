@@ -1,5 +1,6 @@
 const initialState = {
   trucks: [],
+  truckDetail: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -8,6 +9,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         trucks: action.payload,
+      };
+    case "TRUCK_DETAIL":
+      return {
+        ...state,
+        truckDetail: action.payload,
       };
     default:
       return state;

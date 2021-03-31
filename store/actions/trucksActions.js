@@ -13,3 +13,17 @@ export const trucksList = () => {
     }
   };
 };
+
+export const truckDetail = (truckId) => {
+  return async (dispatch) => {
+    try {
+      const res = await instance.get(`/foodtruck/detail/${truckId}`);
+      dispatch({
+        type: "TRUCK_DETAIL",
+        payload: res.data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};

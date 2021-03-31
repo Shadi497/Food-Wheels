@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 
 export const Search = styled.View`
   width: 70%;
-  height: 10%;
+  height: 50px;
   margin-top: 12%;
   margin-bottom: 9%;
   padding-left: 5%;
