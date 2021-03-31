@@ -24,6 +24,12 @@ export const HeaderTxt = styled.Text`
   font-size: 20px;
 `;
 
+export const TruckLabelStyle = styled.Text`
+  margin-left: 8px;
+  font-size: 15px;
+  font-weight: bold;
+`;
+
 export const TxtStyle = styled.Text`
   text-align: left;
   margin-top: 50px;
@@ -31,6 +37,36 @@ export const TxtStyle = styled.Text`
   margin-bottom: 20px;
   font-size: 20px;
   font-weight: bold;
+`;
+
+export const TruckImageStyle = styled.Image`
+  margin-left: 15px;
+  width: 35%;
+  height: 70%;
+  border-radius: 10px;
+`;
+
+export const TruckCard = styled.TouchableOpacity`
+  background-color: white;
+  flex-direction: row;
+  align-self: center;
+  margin-bottom: 8%;
+  border-radius: 10px;
+  width: 55%;
+  height: 55px;
+  shadow-color: #000;
+  shadow-offset: 0 10px;
+  shadow-opacity: 0.37;
+  shadow-radius: 13.16px;
+  elevation: 12;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const MiniListView = styled.View`
+  flex-direction: column;
+  display: flex;
+  margin-bottom: 10%;
 `;
 
 export const Card = styled.TouchableOpacity`

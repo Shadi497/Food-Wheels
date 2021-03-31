@@ -3,7 +3,10 @@ import React, { useState } from "react";
 import { ScrollView, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-elements";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+//Actions
+import { truckDetail } from "../../store/actions/trucksActions";
 
 //Styles
 import {
@@ -18,13 +21,19 @@ import {
 
 export default function TrucksList() {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [query, setQuery] = useState("");
   const trucks = useSelector((state) => state.trucksReducer.trucks);
 
   const list = trucks
     .filter((truck) => truck.name.toLowerCase().includes(query.toLowerCase()))
     .map((truck) => (
-      <TruckCard key={truck.id} onPress={() => navigation.navigate("Detail")}>
+      <TruckCard
+        key={truck.id}
+        onPress={() => {
+          dispatch(truckDetail(truck.id)), navigation.navigate("Detail");
+        }}
+      >
         {/* <TruckImageStyle
           source={{
             uri: truck.uri,

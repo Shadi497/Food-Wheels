@@ -73,7 +73,7 @@ export const ModalStyles = StyleSheet.create({
   modalView: {
     width: "80%",
     paddingHorizontal: "3%",
-    height: "40%",
+    height: "43%",
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
@@ -94,6 +94,12 @@ export const ModalStyles = StyleSheet.create({
     textAlign: "center",
     fontSize: 17,
     marginBottom: 35,
+  },
+  NoStyle: {
+    color: "tomato",
+    textAlign: "center",
+    fontSize: 15,
+    marginTop: 15,
   },
 });
 

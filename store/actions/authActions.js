@@ -92,9 +92,38 @@ export const profileEdit = (updatedProfile) => {
   };
 };
 
-export const getLocation = (longitude,latitude) => async (dispatch) => {
+export const follow = (truckId) => {
+  return async (dispatch) => {
+    try {
+      const res = await instance.post(`/follow/${truckId}`);
+      dispatch({
+        type: "FOLLOW",
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const unfollow = (truckId) => {
+  console.log("truckId", truckId);
+  return async (dispatch) => {
+    try {
+      const res = await instance.post(`/unfollow/${truckId}`);
+      dispatch({
+        type: "UNFOLLOW",
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getLocation = (longitude, latitude) => async (dispatch) => {
   try {
-    const res = await instance.put("/location", {longitude,latitude});
+    const res = await instance.put("/location", { longitude, latitude });
   } catch (error) {
     console.log(error);
   }

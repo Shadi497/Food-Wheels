@@ -16,9 +16,15 @@ import {useDispatch} from "react-redux"
 import { ModalStyles } from "./styles";
 import { getLocation } from "../../store/actions/authActions";
 
+//Actions
+import { getLocation } from "../../store/actions/authActions";
+import { Spinner } from "native-base";
+
 export default function UserLocation({ state, setstate }) {
-  const dispatch = useDispatch()
   const [isFetching, setIsFetching] = useState(false);
+  const dispatch = useDispatch();
+
+
   const _getLocationAsync = async () => {
     try {
       setIsFetching(true);
@@ -32,7 +38,9 @@ export default function UserLocation({ state, setstate }) {
 
       let location = await Location.getCurrentPositionAsync({});
       setstate({ location });
-      dispatch(getLocation(location.coords.longitude,location.coords.latitude))
+      dispatch(
+        getLocation(location.coords.longitude, location.coords.latitude)
+      );
       setIsFetching(false);
     } catch (error) {
       let status = Location.getProviderStatusAsync();
@@ -50,11 +58,14 @@ export default function UserLocation({ state, setstate }) {
   }
 
   return (
-    <Modal isVisible={state.location ? false : true}>
+    <Modal
+      isVisible={state.isLocationModalVisible}
+      onBackdropPress={() => setstate({ isLocationModalVisible: false })}
+    >
       <View style={ModalStyles.centeredView}>
         <View style={ModalStyles.modalView}>
           {isFetching ? (
-            <ActivityIndicator style={styles.spinner} />
+            <Spinner style={{ marginTop: 35 }} />
           ) : (
             <>
               <Text style={ModalStyles.textStyle}>
@@ -62,9 +73,16 @@ export default function UserLocation({ state, setstate }) {
                 while using the application.
               </Text>
               <Button
+                color="tomato"
                 title="Access Location"
                 onPress={_getLocationAsync}
               ></Button>
+              <Text
+                style={ModalStyles.NoStyle}
+                onPress={() => setstate({ isLocationModalVisible: false })}
+              >
+                No thanks
+              </Text>
             </>
           )}
         </View>

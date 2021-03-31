@@ -14,11 +14,13 @@ import {
   MiniListView,
 } from "./styles";
 
-export default function MiniList({ trucks }) {
+export default function FavouriteTrucks() {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const trucksList = trucks.map((truck) => (
+  const checkProfile = useSelector((state) => state.authReducer.profile);
+
+  const trucksList = checkProfile.FoodTrucks.map((truck) => (
     <TruckCard
       key={truck.id}
       onPress={() => {
@@ -26,11 +28,11 @@ export default function MiniList({ trucks }) {
       }}
     >
       {/* <TruckImageStyle
-          source={{
-            uri:
-              "https://cdn.vox-cdn.com/thumbor/hpLuwWsAqHzuKP0oPPzox6DORhA=/0x0:2000x1333/1200x800/filters:focal(840x507:1160x827)/cdn.vox-cdn.com/uploads/chorus_image/image/66680032/DSC05430.0.jpg",
-          }}
-        /> */}
+            source={{
+              uri:
+                "https://cdn.vox-cdn.com/thumbor/hpLuwWsAqHzuKP0oPPzox6DORhA=/0x0:2000x1333/1200x800/filters:focal(840x507:1160x827)/cdn.vox-cdn.com/uploads/chorus_image/image/66680032/DSC05430.0.jpg",
+            }}
+          /> */}
       <TruckLabelStyle>{truck.name}</TruckLabelStyle>
     </TruckCard>
   ));
