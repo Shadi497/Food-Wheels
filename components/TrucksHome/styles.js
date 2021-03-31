@@ -96,3 +96,5 @@ export const ModalStyles = StyleSheet.create({
     marginBottom: 35,
   },
 });
+
+

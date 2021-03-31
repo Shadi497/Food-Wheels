@@ -91,3 +91,11 @@ export const profileEdit = (updatedProfile) => {
     }
   };
 };
+
+export const getLocation = (longitude,latitude) => async (dispatch) => {
+  try {
+    const res = await instance.put("/location", {longitude,latitude});
+  } catch (error) {
+    console.log(error);
+  }
+};

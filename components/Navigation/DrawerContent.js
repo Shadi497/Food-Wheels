@@ -22,7 +22,7 @@ export default function DrawerContent(props) {
   const dispatch = useDispatch();
 
   const Out = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     await dispatch(signout());
     await dispatch(clearProfile());
     ToastAndroid.show(`See you soon 😔`, ToastAndroid.SHORT, ToastAndroid.TOP);

@@ -1,16 +1,27 @@
 //React Imports
-import React from "react";
-import { View, Text, Button } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  Button,
+  ActivityIndicator,
+  StyleSheet,
+} from "react-native";
 import Modal from "react-native-modal";
 import * as Location from "expo-location";
 import * as Permissions from "expo-permissions";
+import {useDispatch} from "react-redux"
 
 //Styles
 import { ModalStyles } from "./styles";
+import { getLocation } from "../../store/actions/authActions";
 
 export default function UserLocation({ state, setstate }) {
+  const dispatch = useDispatch()
+  const [isFetching, setIsFetching] = useState(false);
   const _getLocationAsync = async () => {
     try {
+      setIsFetching(true);
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
       if (status !== "granted") {
         setstate({
@@ -21,6 +32,8 @@ export default function UserLocation({ state, setstate }) {
 
       let location = await Location.getCurrentPositionAsync({});
       setstate({ location });
+      dispatch(getLocation(location.coords.longitude,location.coords.latitude))
+      setIsFetching(false);
     } catch (error) {
       let status = Location.getProviderStatusAsync();
       if (!status.locationServicesEnabled) {
@@ -40,14 +53,28 @@ export default function UserLocation({ state, setstate }) {
     <Modal isVisible={state.location ? false : true}>
       <View style={ModalStyles.centeredView}>
         <View style={ModalStyles.modalView}>
-          <Text style={ModalStyles.textStyle}>
-            Food On Wheels uses location for better User experience & only while
-            using the application.
-          </Text>
-
-          <Button title="Access Location" onPress={_getLocationAsync}></Button>
+          {isFetching ? (
+            <ActivityIndicator style={styles.spinner} />
+          ) : (
+            <>
+              <Text style={ModalStyles.textStyle}>
+                Food On Wheels uses location for better User experience & only
+                while using the application.
+              </Text>
+              <Button
+                title="Access Location"
+                onPress={_getLocationAsync}
+              ></Button>
+            </>
+          )}
         </View>
       </View>
     </Modal>
   );
 }
+
+const styles = StyleSheet.create({
+  spinner: {
+    flex: 1,
+  },
+});
