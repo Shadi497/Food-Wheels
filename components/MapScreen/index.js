@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ActivityIndicator, Button } from "react-native";
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  Button,
+  Image,
+  StyleSheet,
+} from "react-native";
+import MapView, { Marker } from "react-native-maps";
 import { useSelector } from "react-redux";
 export default function MapScreen({ navigation }) {
   const location = useSelector((state) => state.authReducer.location);
@@ -32,7 +39,24 @@ export default function MapScreen({ navigation }) {
           region={region}
           showsUserLocation={true}
           onRegionChangeComplete={onRegionChange}
-        />
+        >
+          <Marker
+            coordinate={{
+              latitude: 26.413549197719615,
+              longitude: 50.07087707519531,
+            }}
+            
+          >
+            <Image
+              source={{
+                uri:
+                  "https://cdn2.iconfinder.com/data/icons/modifiers-add-on-1-colored/48/JD-34-512.png",
+              }}
+              style={style.marker}
+            />
+            <Text style={{ width: 0, height: 0 }}>{Math.random()}</Text>
+          </Marker>
+        </MapView>
         <View>
           <Button title="Back" onPress={() => navigation.goBack()} />
         </View>
@@ -40,3 +64,10 @@ export default function MapScreen({ navigation }) {
     );
   }
 }
+
+const style = StyleSheet.create({
+  marker: {
+    width: 30,
+    height: 30,
+  },
+});
