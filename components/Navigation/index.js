@@ -13,7 +13,7 @@ import TrucksDetail from "../TrucksDetail";
 import Profile from "../Profile";
 import TrucksList from "../TrucksList";
 import CategoryTruckList from "../CategoryTruckList";
-
+import MapScreen from "../MapScreen"
 export const AuthenticationNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
 
@@ -82,7 +82,6 @@ export const TrucksListNavigator = () => {
 
 export const CategoryTrucksListNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
-
   return (
     <Navigator screenOptions={{ headerTitleAlign: "center" }}>
       <Screen
@@ -109,6 +108,15 @@ export const TruckNavigator = () => {
           headerShown: false,
         }}
       />
+    </Navigator>
+  );
+};
+
+export const MapNavigator = () => {
+  const { Navigator, Screen } = createStackNavigator();
+  return (
+    <Navigator screenOptions={{ headerTitleAlign: "center" }}>
+      <Screen name="Map" component={MapScreen} options={{ headerShown: false }} />
     </Navigator>
   );
 };

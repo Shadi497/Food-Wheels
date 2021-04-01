@@ -123,6 +123,10 @@ export const unfollow = (truckId) => {
 export const getLocation = (longitude, latitude) => async (dispatch) => {
   try {
     const res = await instance.put("/location", { longitude, latitude });
+    dispatch({
+      type: "GET_LOCATION",
+      payload: { longitude, latitude },
+    });
   } catch (error) {
     console.log(error);
   }
