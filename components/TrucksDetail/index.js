@@ -11,6 +11,9 @@ import { follow, unfollow, profile } from "../../store/actions/authActions";
 //Styles
 import { TruckNameStyle, Header, MainView } from "./styles";
 
+import { Platform } from "react-native";
+import { Linking } from "react-native";
+
 export default function TrucksDetail() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -30,6 +33,13 @@ export default function TrucksDetail() {
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
+  let time = () =>
+    setTimeout(() => {
+      dispatch(profile(user.username));
+    }, 1000);
+
+  clearTimeout(time);
+
   let followed;
   if (checkProfile)
     followed = checkProfile.FoodTrucks.some((f) => f.id === truckDetail.id);
@@ -37,23 +47,36 @@ export default function TrucksDetail() {
   const Follow = () => {
     if (user) {
       dispatch(follow(truckDetail.id));
+      time();
+      ToastAndroid.show(`Added successfully.`, ToastAndroid.LONG);
+    } else {
+      navigation.navigate("Authentication");
       ToastAndroid.show(
-        `Added successfully. Refresh the page.`,
-        ToastAndroid.LONG
+        `Please login to favorite the truck.`,
+        ToastAndroid.SHORT
       );
-    } else navigation.navigate("Authentication");
+    }
   };
 
   const UnFollow = () => {
     if (user) {
       dispatch(unfollow(truckDetail.id));
-      ToastAndroid.show(
-        `Removed successfully. Refresh the page.`,
-        ToastAndroid.LONG
-      );
+      time();
+      ToastAndroid.show(`Removed successfully.`, ToastAndroid.LONG);
     } else navigation.navigate("Authentication");
   };
 
+  const scheme = Platform.select({ ios: "maps:0,0?q=", android: "geo:0,0?q=" });
+  const latLng = `26.263528, 50.594639`;
+  const label = "Custom Label";
+  const url = Platform.select({
+    ios: `${scheme}${label}@${latLng}`,
+    android: `${scheme}${latLng}(${label})`,
+  });
+
+  const Maps = () => Linking.openURL(url);
+
+  const Insta = () => Linking.openURL("https://www.instagram.com/chipsytime/");
   return (
     <MainView>
       <ScrollView
@@ -83,6 +106,22 @@ export default function TrucksDetail() {
           }}
         /> */}
         <TruckNameStyle>{truckDetail.name}</TruckNameStyle>
+        <Icon
+          type="font-awesome"
+          name="instagram"
+          size={45}
+          iconStyle={{ marginTop: "40%" }}
+          onPress={Insta}
+          color="tomato"
+        />
+        <Icon
+          type="entypo"
+          name="location"
+          size={45}
+          iconStyle={{ marginTop: "10%" }}
+          onPress={Maps}
+          color="tomato"
+        />
       </ScrollView>
     </MainView>
   );

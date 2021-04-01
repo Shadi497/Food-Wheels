@@ -13,28 +13,9 @@ export const Search = styled.View`
   border-radius: 25px;
 `;
 
-export const CardContainer = styled.View`
-  justify-content: center;
-  flex-direction: row;
-`;
-
 export const MainView = styled.View`
   background-color: #e5e4e2;
   height: 100%;
-`;
-export const Card = styled.View`
-  background-color: white;
-  align-items: center;
-  margin-right: 45px;
-  margin-bottom: 25px;
-  border-radius: 10px;
-  width: 170px;
-  height: 200px;
-  shadow-color: #000;
-  shadow-offset: 0 10px;
-  shadow-opacity: 0.37;
-  shadow-radius: 13.16px;
-  elevation: 12;
 `;
 
 export const TruckCard = styled.TouchableOpacity`
@@ -59,16 +40,14 @@ export const Header = styled.View`
   margin-top: 15%;
 `;
 
-export const MiniListView = styled.View`
+export const ListView = styled.View`
   flex-direction: column;
   display: flex;
   margin-bottom: 10%;
 `;
 
-export const ListView = styled.View`
-  flex-direction: column;
-  display: flex;
-  margin-bottom: 10%;
+export const NullView = styled.View`
+  margin-top: 13%;
 `;
 
 export const TruckImageStyle = styled.Image`
@@ -78,16 +57,10 @@ export const TruckImageStyle = styled.Image`
   border-radius: 10px;
 `;
 
-export const ImageStyle = styled.Image`
-  margin-top: 5px;
-  width: 90%;
-  height: 80%;
-  border-radius: 10px;
-`;
-
 export const LabelStyle = styled.Text`
-  margin: 8px 0;
-  font-size: 15px;
+  margin-top: 7%;
+  text-align: center;
+  font-size: 20px;
   font-weight: bold;
 `;
 
@@ -97,11 +70,9 @@ export const TruckLabelStyle = styled.Text`
   font-weight: bold;
 `;
 
-export const TxtStyle = styled.Text`
-  text-align: left;
-  margin-top: 50px;
-  margin-left: 50px;
-  margin-bottom: 20px;
-  font-size: 25px;
-  font-weight: bold;
+export const LabelDetailStyle = styled.Text`
+  color: #797979;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 4%;
 `;

@@ -107,7 +107,6 @@ export const follow = (truckId) => {
 };
 
 export const unfollow = (truckId) => {
-  console.log("truckId", truckId);
   return async (dispatch) => {
     try {
       const res = await instance.post(`/unfollow/${truckId}`);
