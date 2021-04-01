@@ -12,9 +12,9 @@ import {
   ProfileNavigator,
   TruckNavigator,
   TrucksListNavigator,
+  MapNavigator,
 } from ".";
 import DrawerContent from "./DrawerContent";
-
 export const DrawerNavigator = () => {
   const Drawer = createDrawerNavigator();
 
@@ -38,6 +38,7 @@ export const DrawerNavigator = () => {
         <Drawer.Screen name="Profile" component={ProfileNavigator} />
         <Drawer.Screen name="Detail" component={TruckNavigator} />
         <Drawer.Screen name="TrucksList" component={TrucksListNavigator} />
+        <Drawer.Screen name="Map" component={MapNavigator} />
         <Drawer.Screen
           name="CategoryTrucksList"
           component={CategoryTrucksListNavigator}

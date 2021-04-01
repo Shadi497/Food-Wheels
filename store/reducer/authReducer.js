@@ -1,6 +1,7 @@
 const initialState = {
   user: null,
   profile: null,
+  location: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,6 +21,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         profile: action.payload.updatedProfile,
+      };
+    case "GET_LOCATION":
+      return {
+        ...state,
+        location: action.payload,
       };
 
     default:

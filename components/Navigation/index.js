@@ -11,6 +11,7 @@ import Profile from "../Profile";
 import TrucksList from "../TrucksList";
 import CategoryTruckList from "../CategoryTruckList";
 import Map from "../Map";
+import MapScreen from "../MapScreen"
 
 export const AuthenticationNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
@@ -79,7 +80,6 @@ export const TrucksListNavigator = () => {
 
 export const CategoryTrucksListNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
-
   return (
     <Navigator screenOptions={{ headerTitleAlign: "center" }}>
       <Screen
@@ -111,7 +111,6 @@ export const TruckNavigator = () => {
 
 export const TruckMapNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
-
   return (
     <Navigator screenOptions={{ headerTitleAlign: "center" }}>
       <Screen
@@ -121,6 +120,11 @@ export const TruckMapNavigator = () => {
           headerShown: false,
         }}
       />
-    </Navigator>
+    
+export const MapNavigator = () => {
+  const { Navigator, Screen } = createStackNavigator();
+  return (
+    <Navigator screenOptions={{ headerTitleAlign: "center" }}/>
+      <Screen name="Map" component={MapScreen} options={{ headerShown: false }} />
   );
 };
