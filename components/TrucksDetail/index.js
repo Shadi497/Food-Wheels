@@ -29,7 +29,7 @@ export default function TrucksDetail() {
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    dispatch(profile(user.username));
+    user && dispatch(profile(user.username));
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
@@ -119,7 +119,7 @@ export default function TrucksDetail() {
           name="location"
           size={45}
           iconStyle={{ marginTop: "10%" }}
-          onPress={Maps}
+          onPress={() => navigation.navigate("TruckMap")}
           color="tomato"
         />
       </ScrollView>

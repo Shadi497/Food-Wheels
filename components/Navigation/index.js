@@ -2,9 +2,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Authentication from "../Authentication";
-import { useNavigation } from "@react-navigation/native";
-import { View } from "react-native";
-import { Icon } from "react-native-elements";
 
 //Components
 import Home from "../Home";
@@ -13,7 +10,9 @@ import TrucksDetail from "../TrucksDetail";
 import Profile from "../Profile";
 import TrucksList from "../TrucksList";
 import CategoryTruckList from "../CategoryTruckList";
+import Map from "../Map";
 import MapScreen from "../MapScreen"
+
 export const AuthenticationNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
 
@@ -32,7 +31,6 @@ export const AuthenticationNavigator = () => {
 
 export const ProfileNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
-  const navigation = useNavigation();
 
   return (
     <Navigator screenOptions={{ headerTitleAlign: "center" }}>
@@ -97,7 +95,6 @@ export const CategoryTrucksListNavigator = () => {
 
 export const TruckNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
-  const navigation = useNavigation();
 
   return (
     <Navigator screenOptions={{ headerTitleAlign: "center" }}>
@@ -112,11 +109,22 @@ export const TruckNavigator = () => {
   );
 };
 
-export const MapNavigator = () => {
+export const TruckMapNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
   return (
     <Navigator screenOptions={{ headerTitleAlign: "center" }}>
+      <Screen
+        name="TruckMap"
+        component={Map}
+        options={{
+          headerShown: false,
+        }}
+      />
+    
+export const MapNavigator = () => {
+  const { Navigator, Screen } = createStackNavigator();
+  return (
+    <Navigator screenOptions={{ headerTitleAlign: "center" }}/>
       <Screen name="Map" component={MapScreen} options={{ headerShown: false }} />
-    </Navigator>
   );
 };
