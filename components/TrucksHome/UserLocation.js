@@ -14,7 +14,6 @@ import {useDispatch} from "react-redux"
 
 //Styles
 import { ModalStyles } from "./styles";
-import { getLocation } from "../../store/actions/authActions";
 
 //Actions
 import { getLocation } from "../../store/actions/authActions";

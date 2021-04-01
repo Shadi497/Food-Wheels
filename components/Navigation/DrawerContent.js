@@ -22,7 +22,7 @@ export default function DrawerContent(props) {
   const dispatch = useDispatch();
 
   const Out = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     await dispatch(signout());
     await dispatch(clearProfile());
     ToastAndroid.show(`See you soon 😔`, ToastAndroid.SHORT, ToastAndroid.TOP);
@@ -72,6 +72,28 @@ export default function DrawerContent(props) {
                 props.navigation.navigate(users ? "Profile" : "Authentication");
               }}
             />
+            {users ? (
+              <DrawerItem
+                focused={getActiveRouteState(
+                  props.state.routes,
+                  props.state.index,
+                  "Map"
+                )}
+                activeTintColor="tomato"
+                activeBackgroundColor="white"
+                inactiveTintColor="white"
+                icon={({ color, size }) => (
+                  <Icon name="account-outline" color={color} size={size} />
+                )}
+                label={"Map"}
+                labelStyle={{ fontWeight: "bold" }}
+                onPress={() => {
+                  props.navigation.navigate("Map");
+                }}
+              />
+            ) : (
+              null
+            )}
           </Drawer.Section>
         </View>
       </DrawerContentScrollView>
