@@ -10,11 +10,10 @@ import {
 import Modal from "react-native-modal";
 import * as Location from "expo-location";
 import * as Permissions from "expo-permissions";
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux";
 
 //Styles
 import { ModalStyles } from "./styles";
-import { getLocation } from "../../store/actions/authActions";
 
 //Actions
 import { getLocation } from "../../store/actions/authActions";
@@ -23,7 +22,6 @@ import { Spinner } from "native-base";
 export default function UserLocation({ state, setstate }) {
   const [isFetching, setIsFetching] = useState(false);
   const dispatch = useDispatch();
-
 
   const _getLocationAsync = async () => {
     try {
