@@ -1,77 +1,44 @@
 //React Imports
-import React, { useState } from "react";
-import { View, Text, Button } from "react-native";
-import Modal from "react-native-modal";
+import React, { useEffect, useState } from "react";
+import { View, Text } from "react-native";
 import * as Location from "expo-location";
-import * as Permissions from "expo-permissions";
 import { useDispatch } from "react-redux";
-import { Spinner } from "native-base";
-
-//Styles
-import { ModalStyles } from "./styles";
 
 //Actions
 import { getLocation } from "../../store/actions/authActions";
 
-export default function UserLocation({ state, setstate }) {
-  const [isFetching, setIsFetching] = useState(false);
+export default function UserLocation() {
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
   const dispatch = useDispatch();
 
-  const _getLocationAsync = async () => {
-    try {
-      setIsFetching(true);
-      let { status } = await Permissions.askAsync(Permissions.LOCATION);
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestPermissionsAsync();
       if (status !== "granted") {
-        setstate({
-          errorMessage: "Permission to access location was denied",
-        });
+        setErrorMsg("Permission to access location was denied");
         return;
       }
-
       let location = await Location.getCurrentPositionAsync({});
-      setstate({ location });
+      setLocation(location);
       dispatch(
         getLocation(location.coords.longitude, location.coords.latitude)
       );
-      setIsFetching(false);
-    } catch (error) {
-      let status = Location.getProviderStatusAsync();
-      if (!status.locationServicesEnabled) {
-        setstate({ isLocationModalVisible: true });
-      }
-    }
-  };
+    })();
+  }, []);
+
+  let text = "Waiting..";
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
+
+  console.log(text);
 
   return (
-    <Modal
-      isVisible={state.isLocationModalVisible}
-      onBackdropPress={() => setstate({ isLocationModalVisible: false })}
-    >
-      <View style={ModalStyles.centeredView}>
-        <View style={ModalStyles.modalView}>
-          {isFetching ? (
-            <Spinner style={{ marginTop: 35 }} />
-          ) : (
-            <>
-              <Text style={ModalStyles.textStyle}>
-                Food On Wheels uses location for better User experience & only
-                while using the application.
-              </Text>
-              <Button
-                color="tomato"
-                title="Access Location"
-                onPress={_getLocationAsync}
-              ></Button>
-              <Text
-                style={ModalStyles.NoStyle}
-                onPress={() => setstate({ isLocationModalVisible: false })}
-              >
-                No thanks
-              </Text>
-            </>
-          )}
-        </View>
-      </View>
-    </Modal>
+    <View>
+      <Text>{text}</Text>
+    </View>
   );
 }
