@@ -4,7 +4,7 @@ export const Search = styled.View`
   width: 70%;
   height: 50px;
   margin-top: 12%;
-  margin-bottom: 9%;
+  margin-bottom: 7%;
   padding-left: 5%;
   align-items: center;
   align-self: center;
@@ -48,6 +48,13 @@ export const ListView = styled.View`
 
 export const NullView = styled.View`
   margin-top: 13%;
+`;
+export const FoundText = styled.Text`
+  margin-top: 3%;
+  margin-bottom: 8%;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 `;
 
 export const TruckImageStyle = styled.Image`
