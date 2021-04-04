@@ -70,6 +70,14 @@ export const LabelStyle = styled.Text`
   font-weight: bold;
 `;
 
+export const FoundText = styled.Text`
+  margin-top: 3%;
+  margin-bottom: 8%;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+`;
+
 export const TruckLabelStyle = styled.Text`
   margin-left: 8px;
   font-size: 15px;

@@ -74,8 +74,6 @@ export default function TrucksDetail() {
     android: `${scheme}${latLng}(${label})`,
   });
 
-  const Maps = () => Linking.openURL(url);
-
   const Insta = () => Linking.openURL("https://www.instagram.com/chipsytime/");
   return (
     <MainView>

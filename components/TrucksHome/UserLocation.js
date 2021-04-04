@@ -1,23 +1,17 @@
 //React Imports
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  Button,
-  ActivityIndicator,
-  StyleSheet,
-} from "react-native";
+import { View, Text, Button } from "react-native";
 import Modal from "react-native-modal";
 import * as Location from "expo-location";
 import * as Permissions from "expo-permissions";
 import { useDispatch } from "react-redux";
+import { Spinner } from "native-base";
 
 //Styles
 import { ModalStyles } from "./styles";
 
 //Actions
 import { getLocation } from "../../store/actions/authActions";
-import { Spinner } from "native-base";
 
 export default function UserLocation({ state, setstate }) {
   const [isFetching, setIsFetching] = useState(false);
@@ -47,13 +41,6 @@ export default function UserLocation({ state, setstate }) {
       }
     }
   };
-
-  let text = "Waiting..";
-  if (state.errorMessage) {
-    text = state.errorMessage;
-  } else if (state.location) {
-    text = `${state.location.coords.latitude} ${state.location.coords.longitude}`;
-  }
 
   return (
     <Modal
@@ -88,9 +75,3 @@ export default function UserLocation({ state, setstate }) {
     </Modal>
   );
 }
-
-const styles = StyleSheet.create({
-  spinner: {
-    flex: 1,
-  },
-});

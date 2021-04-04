@@ -20,6 +20,7 @@ import {
   MainView,
   NullView,
   LabelDetailStyle,
+  FoundText,
 } from "./styles";
 
 export default function CategoryTruckList() {
@@ -92,7 +93,14 @@ export default function CategoryTruckList() {
             </LabelDetailStyle>
           </NullView>
         ) : (
-          <ListView>{list}</ListView>
+          <>
+            {list && (
+              <FoundText>{`Great! There ${list.length === 1 ? "is" : "are"} ${
+                list.length
+              } food truck(s).`}</FoundText>
+            )}
+            <ListView>{list}</ListView>
+          </>
         )}
       </ScrollView>
     </MainView>
