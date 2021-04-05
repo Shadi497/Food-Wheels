@@ -43,7 +43,6 @@ export const DrawerNavigator = () => {
           name="CategoryTrucksList"
           component={CategoryTrucksListNavigator}
         />
-        <Drawer.Screen name="TruckMap" component={TruckMapNavigator} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
