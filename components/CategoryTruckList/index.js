@@ -40,11 +40,11 @@ export default function CategoryTruckList() {
           dispatch(truckDetail(truck.id)), navigation.navigate("Detail");
         }}
       >
-        {/* <TruckImageStyle
+        <TruckImageStyle
           source={{
-            uri: truck.uri,
+            uri: truck.image,
           }}
-        /> */}
+        />
         <TruckLabelStyle>{truck.name}</TruckLabelStyle>
       </TruckCard>
     ));
