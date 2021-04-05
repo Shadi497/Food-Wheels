@@ -23,8 +23,8 @@ import {
   LabelDetailStyle,
   IconView,
   InfoView,
-  InfoTxt,
 } from "./styles";
+import { Platform } from "react-native";
 
 export default function TrucksDetail() {
   const dispatch = useDispatch();
@@ -34,6 +34,18 @@ export default function TrucksDetail() {
   const checkProfile = useSelector((state) => state.authReducer.profile);
 
   const [refreshing, setRefreshing] = useState(false);
+
+  const scheme = Platform.select({ ios: "maps:0,0?q=", android: "geo:0,0?q=" });
+  const latLng = `${
+    truckDetail.location && truckDetail.location.coordinates[1]
+  }, ${truckDetail.location && truckDetail.location.coordinates[0]}`;
+  const label = "Custom Label";
+  const url = Platform.select({
+    ios: `${scheme}${label}@${latLng}`,
+    android: `${scheme}${latLng}(${label})`,
+  });
+
+  const Maps = () => Linking.openURL(url);
 
   const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -120,11 +132,9 @@ export default function TrucksDetail() {
               size={35}
               color="tomato"
             />
-            <InfoTxt>Our Instagram Profile</InfoTxt>
           </IconView>
-          <IconView onPress={() => navigation.navigate("TruckMap")}>
+          <IconView onPress={Maps}>
             <Icon type="entypo" name="location" size={35} color="tomato" />
-            <InfoTxt>Our Loction</InfoTxt>
           </IconView>
         </InfoView>
       </ScrollView>

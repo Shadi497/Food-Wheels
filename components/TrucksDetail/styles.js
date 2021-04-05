@@ -62,8 +62,3 @@ export const InfoView = styled.View`
   margin-bottom: 10%;
   align-items: center;
 `;
-
-export const InfoTxt = styled.Text`
-  font-size: 14px;
-  margin-left: 2%;
-`;
