@@ -41,7 +41,7 @@ export default function TrucksDetail() {
   }, ${truckDetail.location && truckDetail.location.coordinates[0]}`;
   const label = "Custom Label";
   const url = Platform.select({
-    ios: `${scheme}${label}@${latLng}`,
+    ios: `https://maps.google.com/?q=${latLng}`,
     android: `${scheme}${latLng}(${label})`,
   });
 

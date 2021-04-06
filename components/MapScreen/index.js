@@ -1,20 +1,22 @@
+//React Imports
 import React, { useState, useEffect } from "react";
-import MarkerModal from "./MarkerModal";
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  Button,
-  Image,
-  StyleSheet,
-} from "react-native";
+import { View, ActivityIndicator, Image } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { useSelector } from "react-redux";
-export default function MapScreen({ navigation }) {
-  const [modalVisible, setModalVisible] = useState(false);
+
+//Components
+import MarkerModal from "./MarkerModal";
+
+//Styles
+import { style } from "./styles";
+
+export default function MapScreen() {
   const profile = useSelector((state) => state.authReducer.profile.FoodTrucks);
   const location = useSelector((state) => state.authReducer.location);
+
+  const [modalVisible, setModalVisible] = useState(false);
   const [favorite, setFavorite] = useState(null);
+
   const [region, setRegion] = useState({
     latitude: location.latitude,
     longitude: location.longitude,
@@ -25,6 +27,7 @@ export default function MapScreen({ navigation }) {
   const onRegionChange = (region) => {
     setRegion(region);
   };
+
   useEffect(() => {
     setMapLoaded(true);
   }, [mapLoaded]);
@@ -33,14 +36,16 @@ export default function MapScreen({ navigation }) {
     setFavorite(foodTruck);
     setModalVisible(true);
   };
+
   const favoriteMarker = profile.map((foodTruck) => (
     <Marker
       coordinate={{
-        latitude: foodTruck.location.coordinates[1],
-        longitude: foodTruck.location.coordinates[0],
+        latitude: foodTruck && foodTruck.location.coordinates[1],
+        longitude: foodTruck && foodTruck.location.coordinates[0],
       }}
       onPress={() => handleSelectedMarker(foodTruck)}
       title={foodTruck.name}
+      key={foodTruck.id}
     >
       <Image
         source={{
@@ -49,7 +54,6 @@ export default function MapScreen({ navigation }) {
         }}
         style={style.marker}
       />
-      <Text style={{ width: 0, height: 0 }}>{Math.random()}</Text>
     </Marker>
   ));
 
@@ -80,10 +84,3 @@ export default function MapScreen({ navigation }) {
     );
   }
 }
-
-const style = StyleSheet.create({
-  marker: {
-    width: 30,
-    height: 30,
-  },
-});

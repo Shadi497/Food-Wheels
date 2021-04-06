@@ -113,6 +113,7 @@ export default function UpdateModal({
                 justifyContent: "center",
                 alignItems: "center",
                 backgroundColor: "tomato",
+                borderRadius: 25,
               }}
               uppercase={false}
               labelStyle={{

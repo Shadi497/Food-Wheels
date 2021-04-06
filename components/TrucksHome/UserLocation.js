@@ -34,7 +34,7 @@ export default function UserLocation() {
     text = JSON.stringify(location);
   }
 
-  console.log(text);
+  // console.log(location.coords.longitude);
 
   return <View>{/* <Text>{text}</Text> */}</View>;
 }
