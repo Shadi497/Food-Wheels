@@ -2,6 +2,7 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch } from "react-redux";
+import { Icon } from "react-native-elements";
 
 //Actions
 import { truckDetail } from "../../store/actions/trucksActions";
@@ -9,9 +10,10 @@ import { truckDetail } from "../../store/actions/trucksActions";
 //Styles
 import {
   TruckLabelStyle,
-  TruckImageStyle,
   TruckCard,
   MiniListView,
+  NullView,
+  LabelStyle,
 } from "./styles";
 
 export default function FavouriteTrucks() {
@@ -27,15 +29,24 @@ export default function FavouriteTrucks() {
         dispatch(truckDetail(truck.id)), navigation.navigate("Detail");
       }}
     >
-      {/* <TruckImageStyle
-            source={{
-              uri:
-                "https://cdn.vox-cdn.com/thumbor/hpLuwWsAqHzuKP0oPPzox6DORhA=/0x0:2000x1333/1200x800/filters:focal(840x507:1160x827)/cdn.vox-cdn.com/uploads/chorus_image/image/66680032/DSC05430.0.jpg",
-            }}
-          /> */}
       <TruckLabelStyle>{truck.name}</TruckLabelStyle>
     </TruckCard>
   ));
 
-  return <MiniListView>{trucksList}</MiniListView>;
+  return trucksList.length === 0 ? (
+    <NullView>
+      <Icon
+        type="ionicon"
+        name="heart-dislike-sharp"
+        size={45}
+        color="#c2c2c2"
+      />
+      <LabelStyle>Oh! You don't have any {"\n"} Favorite trucks!</LabelStyle>
+      {/* <LabelDetailStyle>
+              Make sure you entered the correct name.
+            </LabelDetailStyle> */}
+    </NullView>
+  ) : (
+    <MiniListView>{trucksList}</MiniListView>
+  );
 }

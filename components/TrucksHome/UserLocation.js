@@ -36,9 +36,5 @@ export default function UserLocation() {
 
   console.log(text);
 
-  return (
-    <View>
-      <Text>{text}</Text>
-    </View>
-  );
+  return <View>{/* <Text>{text}</Text> */}</View>;
 }
