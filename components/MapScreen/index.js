@@ -14,12 +14,12 @@ export default function MapScreen({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const profile = useSelector((state) => state.authReducer.profile.FoodTrucks);
   const location = useSelector((state) => state.authReducer.location);
-  const [favorite, setFavorite] = useState();
+  const [favorite, setFavorite] = useState(null);
   const [region, setRegion] = useState({
     latitude: location.latitude,
     longitude: location.longitude,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
+    latitudeDelta: 0.15,
+    longitudeDelta: 0.15,
   });
   const [mapLoaded, setMapLoaded] = useState(false);
   const onRegionChange = (region) => {

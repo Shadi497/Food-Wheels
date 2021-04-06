@@ -1,12 +1,25 @@
 //React Imports
 import React from "react";
-import { StyleSheet, Modal, View, Text } from "react-native";
+import {
+  StyleSheet,
+  Modal,
+  View,
+  Text,
+  ActivityIndicator,
+  Button,
+} from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import { truckDetail } from "../../store/actions/trucksActions";
+import { useNavigation } from "@react-navigation/native";
 
 export default function UpdateModal({
   modalVisible,
   setModalVisible,
   foodTruck,
 }) {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   return (
     <Modal
       animationType="fade"
@@ -36,7 +49,21 @@ export default function UpdateModal({
             elevation: 5,
           }}
         >
-          <Text>{foodTruck.name}</Text>
+          {foodTruck ? (
+            <>
+              <Text>{foodTruck.name}</Text>
+              <Button
+                title="Detail"
+                onPress={() => (
+                  dispatch(truckDetail(foodTruck.id)),
+                  navigation.navigate("Detail"),
+                  setModalVisible(!modalVisible)
+                )}
+              />
+            </>
+          ) : (
+            <ActivityIndicator />
+          )}
         </View>
       </View>
     </Modal>
