@@ -13,7 +13,6 @@ import TrucksDetail from "../TrucksDetail";
 import Profile from "../Profile";
 import TrucksList from "../TrucksList";
 import CategoryTruckList from "../CategoryTruckList";
-import Map from "../Map";
 import MapScreen from "../MapScreen";
 
 export const AuthenticationNavigator = () => {

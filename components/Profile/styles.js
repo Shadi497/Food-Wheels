@@ -85,11 +85,11 @@ export const Card = styled.TouchableOpacity`
   align-items: center;
 `;
 
-export const LabelStyle = styled.Text`
+export const NameStyle = styled.Text`
   margin-left: 8px;
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 7%;
+  margin-bottom: 3%;
 `;
 
 export const InfoStyle = styled.Text`
@@ -130,6 +130,18 @@ export const EditLabel = styled.Text`
   align-self: center;
   font-weight: bold;
   margin-bottom: 15%;
+`;
+
+export const NullView = styled.View`
+  margin-top: 4%;
+`;
+
+export const LabelStyle = styled.Text`
+  margin-top: 4%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #696969;
 `;
 
 export const ModalStyles = StyleSheet.create({

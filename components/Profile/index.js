@@ -17,7 +17,7 @@ import {
   TxtStyle,
   Card,
   InfoStyle,
-  LabelStyle,
+  NameStyle,
   InfoView,
 } from "./styles";
 
@@ -81,7 +81,7 @@ export default function Profile() {
               bgColor="tomato"
             />
             <InfoView>
-              <LabelStyle>{`${checkProfile.firstName} ${checkProfile.lastName} `}</LabelStyle>
+              <NameStyle>{`${checkProfile.firstName} ${checkProfile.lastName} `}</NameStyle>
               <InfoStyle>{`${checkProfile.email}`}</InfoStyle>
               <InfoStyle>{`${checkProfile.phoneNumber}`}</InfoStyle>
             </InfoView>
