@@ -42,9 +42,6 @@ export default function FavouriteTrucks() {
         color="#c2c2c2"
       />
       <LabelStyle>Oh! You don't have any {"\n"} Favorite trucks!</LabelStyle>
-      {/* <LabelDetailStyle>
-              Make sure you entered the correct name.
-            </LabelDetailStyle> */}
     </NullView>
   ) : (
     <MiniListView>{trucksList}</MiniListView>
