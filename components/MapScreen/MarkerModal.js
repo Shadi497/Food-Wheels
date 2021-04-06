@@ -4,14 +4,14 @@ import { useDispatch } from "react-redux";
 import { Button } from "react-native-paper";
 import { Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-import { Modal, View, ActivityIndicator } from "react-native";
-import { Linking } from "react-native";
+import {Linking, Modal, View, ActivityIndicator } from "react-native";
 
 //Actions
 import { truckDetail } from "../../store/actions/trucksActions";
 
 //Styles
 import { BtnView, Label, ModalStyles } from "./styles";
+
 
 export default function UpdateModal({
   modalVisible,
