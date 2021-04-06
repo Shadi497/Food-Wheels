@@ -112,21 +112,6 @@ export const TruckNavigator = () => {
   );
 };
 
-export const TruckMapNavigator = () => {
-  const { Navigator, Screen } = createStackNavigator();
-  return (
-    <Navigator screenOptions={{ headerTitleAlign: "center" }}>
-      <Screen
-        name="TruckMap"
-        component={Map}
-        options={{
-          headerShown: false,
-        }}
-      />
-    </Navigator>
-  );
-};
-
 export const MapNavigator = () => {
   const { Navigator, Screen } = createStackNavigator();
   return (

@@ -1,6 +1,11 @@
 //React Imports
 import React, { useCallback, useState } from "react";
-import { ScrollView, RefreshControl, ToastAndroid } from "react-native";
+import {
+  Linking,
+  ScrollView,
+  RefreshControl,
+  ToastAndroid,
+} from "react-native";
 import { Icon } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
@@ -9,10 +14,17 @@ import { useNavigation } from "@react-navigation/native";
 import { follow, unfollow, profile } from "../../store/actions/authActions";
 
 //Styles
-import { TruckNameStyle, Header, MainView } from "./styles";
-
+import {
+  TruckNameStyle,
+  Header,
+  MainView,
+  TruckImageStyle,
+  ImgView,
+  LabelDetailStyle,
+  IconView,
+  InfoView,
+} from "./styles";
 import { Platform } from "react-native";
-import { Linking } from "react-native";
 
 export default function TrucksDetail() {
   const dispatch = useDispatch();
@@ -22,6 +34,18 @@ export default function TrucksDetail() {
   const checkProfile = useSelector((state) => state.authReducer.profile);
 
   const [refreshing, setRefreshing] = useState(false);
+
+  const scheme = Platform.select({ ios: "maps:0,0?q=", android: "geo:0,0?q=" });
+  const latLng = `${
+    truckDetail.location && truckDetail.location.coordinates[1]
+  }, ${truckDetail.location && truckDetail.location.coordinates[0]}`;
+  const label = "Custom Label";
+  const url = Platform.select({
+    ios: `${scheme}${label}@${latLng}`,
+    android: `${scheme}${latLng}(${label})`,
+  });
+
+  const Maps = () => Linking.openURL(url);
 
   const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -66,15 +90,8 @@ export default function TrucksDetail() {
     } else navigation.navigate("Authentication");
   };
 
-  const scheme = Platform.select({ ios: "maps:0,0?q=", android: "geo:0,0?q=" });
-  const latLng = `26.263528, 50.594639`;
-  const label = "Custom Label";
-  const url = Platform.select({
-    ios: `${scheme}${label}@${latLng}`,
-    android: `${scheme}${latLng}(${label})`,
-  });
+  const Insta = () => Linking.openURL(truckDetail.instagram);
 
-  const Insta = () => Linking.openURL("https://www.instagram.com/chipsytime/");
   return (
     <MainView>
       <ScrollView
@@ -98,28 +115,28 @@ export default function TrucksDetail() {
             color="tomato"
           />
         </Header>
-        {/* <Image
-          source={{
-            uri: truckDetail.uri,
-          }}
-        /> */}
+        <ImgView>
+          <TruckImageStyle
+            source={{
+              uri: truckDetail.image,
+            }}
+          />
+        </ImgView>
         <TruckNameStyle>{truckDetail.name}</TruckNameStyle>
-        <Icon
-          type="font-awesome"
-          name="instagram"
-          size={45}
-          iconStyle={{ marginTop: "40%" }}
-          onPress={Insta}
-          color="tomato"
-        />
-        <Icon
-          type="entypo"
-          name="location"
-          size={45}
-          iconStyle={{ marginTop: "10%" }}
-          onPress={() => navigation.navigate("TruckMap")}
-          color="tomato"
-        />
+        <LabelDetailStyle>{truckDetail.description}</LabelDetailStyle>
+        <InfoView>
+          <IconView onPress={Insta}>
+            <Icon
+              type="font-awesome"
+              name="instagram"
+              size={35}
+              color="tomato"
+            />
+          </IconView>
+          <IconView onPress={Maps}>
+            <Icon type="entypo" name="location" size={35} color="tomato" />
+          </IconView>
+        </InfoView>
       </ScrollView>
     </MainView>
   );

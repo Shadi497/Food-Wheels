@@ -1,11 +1,43 @@
 //React imports
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-native-paper";
+import { useSelector } from "react-redux";
+import { PermissionsAndroid } from "react-native";
+
+//Components
+import LocationModal from "./LocationModal";
 
 //Styles
 import { Title, HomeBackground, MainView } from "./styles";
 
 const Home = ({ navigation }) => {
+  const [userlocation, setUserLocation] = useState({
+    location: null,
+    errorMessage: null,
+    isLocationModalVisible: false,
+  });
+
+  const [granted, setGranted] = useState(false);
+
+  const check = async () => {
+    let granted = await PermissionsAndroid.check(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
+    );
+    setGranted(granted);
+  };
+
+  useEffect(() => {
+    let isMounted = true;
+    check().then(() => {
+      if (isMounted) return granted;
+    });
+    return () => {
+      isMounted = false;
+    };
+  });
+
+  const checkProfile = useSelector((state) => state.authReducer.profile);
+
   return (
     <MainView>
       <Title>Food On Wheels</Title>
@@ -29,10 +61,22 @@ const Home = ({ navigation }) => {
           fontWeight: "bold",
         }}
         color="white"
-        onPress={() => navigation.replace("TrucksHome")}
+        onPress={() => {
+          if (checkProfile && checkProfile.location !== null && !granted)
+            setUserLocation({ isLocationModalVisible: true });
+          else if (checkProfile && checkProfile.location !== null && granted)
+            navigation.replace("TrucksHome");
+          else navigation.replace("TrucksHome");
+        }}
       >
         Get Started
       </Button>
+      {checkProfile && checkProfile.location.coordinates !== null && (
+        <LocationModal
+          isLocationModalVisible={userlocation.isLocationModalVisible}
+          setUserLocation={setUserLocation}
+        />
+      )}
     </MainView>
   );
 };

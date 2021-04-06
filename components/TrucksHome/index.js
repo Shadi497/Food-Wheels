@@ -19,15 +19,10 @@ import { profile } from "../../store/actions/authActions";
 export default function TrucksHome() {
   const navigation = useNavigation();
 
-  const [state, setstate] = useState({
-    location: null,
-    errorMessage: null,
-    isLocationModalVisible: true,
-  });
-
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.user);
   const checkProfile = useSelector((state) => state.authReducer.profile);
+
   const categories = useSelector((state) => state.categoryReducer.category);
   const trucks = useSelector((state) => state.trucksReducer.trucks);
 
@@ -44,8 +39,7 @@ export default function TrucksHome() {
             onPress={() => navigation.openDrawer()}
           />
         </Header>
-
-        {user && <UserLocation state={state} setstate={setstate} />}
+        {user && <UserLocation />}
 
         <TxtStyle>Categories</TxtStyle>
         <CategoriesCards categories={categories} />

@@ -10,16 +10,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { styles } from "./styles";
 
 //Actions
-import { clearProfile, signout } from "../../store/actions/authActions";
+import {
+  clearProfile,
+  signout,
+  profile,
+} from "../../store/actions/authActions";
 
 export default function DrawerContent(props) {
   const getActiveRouteState = function (routes, index, name) {
     return routes[index].name.toLowerCase().indexOf(name.toLowerCase()) >= 0;
   };
 
-  const users = useSelector((state) => state.authReducer.user);
-
   const dispatch = useDispatch();
+  const users = useSelector((state) => state.authReducer.user);
+  const checkProfile = useSelector((state) => state.authReducer.profile);
+  checkProfile === null && users && dispatch(profile(users.username));
 
   const Out = async (event) => {
     // event.preventDefault();
@@ -33,7 +38,7 @@ export default function DrawerContent(props) {
       <DrawerContentScrollView {...props}>
         <View>
           <View style={{ flexDirection: "column" }}>
-            <Title style={styles.title}>Welcome, Foodie</Title>
+            <Title style={styles.title}>Welcome, Foodie!</Title>
           </View>
           <Drawer.Section>
             <DrawerItem
@@ -72,7 +77,8 @@ export default function DrawerContent(props) {
                 props.navigation.navigate(users ? "Profile" : "Authentication");
               }}
             />
-            {users ? (
+            {users && checkProfile && checkProfile.location !== null ? (
+              //
               <DrawerItem
                 focused={getActiveRouteState(
                   props.state.routes,
@@ -91,9 +97,7 @@ export default function DrawerContent(props) {
                   props.navigation.navigate("Map");
                 }}
               />
-            ) : (
-              null
-            )}
+            ) : null}
           </Drawer.Section>
         </View>
       </DrawerContentScrollView>
@@ -102,6 +106,7 @@ export default function DrawerContent(props) {
           <DrawerItem
             activeTintColor="tomato"
             activeBackgroundColor="white"
+            labelStyle={{ fontWeight: "bold" }}
             inactiveTintColor="white"
             icon={({ color, size }) => (
               <Icon name="exit-to-app" color={color} size={size} />

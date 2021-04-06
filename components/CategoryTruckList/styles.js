@@ -59,8 +59,8 @@ export const FoundText = styled.Text`
 
 export const TruckImageStyle = styled.Image`
   margin-left: 15px;
-  width: 35%;
-  height: 70%;
+  width: 25%;
+  height: 80%;
   border-radius: 10px;
 `;
 
