@@ -2,6 +2,9 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Authentication from "../Authentication";
+import { Button } from "react-native";
+import { CommonActions } from "@react-navigation/native";
+import { Icon } from "react-native-elements";
 
 //Components
 import Home from "../Home";
@@ -131,7 +134,24 @@ export const MapNavigator = () => {
       <Screen
         name="Map"
         component={MapScreen}
-        options={{ headerShown: false }}
+        options={({ navigation }) => ({
+          headerLeft: () => (
+            <>
+              <Icon
+                type="ionicon"
+                iconStyle={{ alignSelf: "flex-start" }}
+                name="caret-back-outline"
+                size={25}
+                onPress={() => navigation.goBack()}
+              />
+            </>
+          ),
+          headerTitle: "Food Truck Map",
+          headerStyle: {
+            backgroundColor: "#ff917e",
+          },
+          headerTintColor: "#fff",
+        })}
       />
     </Navigator>
   );

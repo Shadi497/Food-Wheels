@@ -9,12 +9,16 @@ export default function Map() {
   const truckDetail = useSelector((state) => state.trucksReducer.truckDetail);
 
   const _map = useRef(null);
-  const scheme = Platform.select({ ios: "maps:0,0?q=", android: "geo:0,0?q=" });
-  const latLng = `26.263528, 50.594639`;
+  const lat = `26.263528`;
+  const long = "50.594639";
   const label = "Custom Label";
+  const scheme = Platform.select({
+    ios: "maps:0,0?q=",
+    android: "geo:0,0?q=",
+  });
   const url = Platform.select({
-    ios: `${scheme}${label}@${latLng}`,
-    android: `${scheme}${latLng}(${label})`,
+    ios: `https://maps.google.com/?q=${lat},${long}`,
+    android: `${scheme}${lat},${long}(${label})`,
   });
 
   const Maps = () => Linking.openURL(url);
