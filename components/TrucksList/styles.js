@@ -79,7 +79,7 @@ export const FoundText = styled.Text`
 `;
 
 export const TruckLabelStyle = styled.Text`
-  margin-left: 8px;
+  margin-left: 8%;
   font-size: 15px;
   font-weight: bold;
 `;

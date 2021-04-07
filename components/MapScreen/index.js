@@ -11,7 +11,9 @@ import MarkerModal from "./MarkerModal";
 import { style } from "./styles";
 
 export default function MapScreen() {
-  const profile = useSelector((state) => state.authReducer.profile.FoodTrucks);
+  const profile = useSelector(
+    (state) => state.authReducer.profile && state.authReducer.profile.FoodTrucks
+  );
   const location = useSelector((state) => state.authReducer.location);
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -37,25 +39,27 @@ export default function MapScreen() {
     setModalVisible(true);
   };
 
-  const favoriteMarker = profile.map((foodTruck) => (
-    <Marker
-      coordinate={{
-        latitude: foodTruck && foodTruck.location.coordinates[1],
-        longitude: foodTruck && foodTruck.location.coordinates[0],
-      }}
-      onPress={() => handleSelectedMarker(foodTruck)}
-      title={foodTruck.name}
-      key={foodTruck.id}
-    >
-      <Image
-        source={{
-          uri:
-            "https://cdn2.iconfinder.com/data/icons/modifiers-add-on-1-colored/48/JD-34-512.png",
+  const favoriteMarker =
+    profile &&
+    profile.map((foodTruck) => (
+      <Marker
+        coordinate={{
+          latitude: foodTruck && foodTruck.location.coordinates[1],
+          longitude: foodTruck && foodTruck.location.coordinates[0],
         }}
-        style={style.marker}
-      />
-    </Marker>
-  ));
+        onPress={() => handleSelectedMarker(foodTruck)}
+        title={foodTruck.name}
+        key={foodTruck.id}
+      >
+        <Image
+          source={{
+            uri:
+              "https://cdn2.iconfinder.com/data/icons/modifiers-add-on-1-colored/48/JD-34-512.png",
+          }}
+          style={style.marker}
+        />
+      </Marker>
+    ));
 
   if (!mapLoaded) {
     return (
