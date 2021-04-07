@@ -29,6 +29,8 @@ export default function SignIn() {
     password: "",
   });
 
+  const [pass, setpass] = useState(false);
+
   const navigation = useNavigation();
 
   const dispatch = useDispatch();
@@ -41,6 +43,10 @@ export default function SignIn() {
     if (users !== "null") {
       ToastAndroid.show(`Hi ${user.username} 👋`, ToastAndroid.SHORT);
     }
+  };
+
+  const showPass = () => {
+    setpass(!pass);
   };
 
   return (
@@ -103,7 +109,14 @@ export default function SignIn() {
                     value={values.password}
                     onChangeText={handleChange("password")}
                     onBlur={() => setFieldTouched("password")}
-                    secureTextEntry={true}
+                    secureTextEntry={pass ? false : true}
+                  />
+                  <Icon
+                    type="entypo"
+                    name={pass ? "eye-with-line" : "eye"}
+                    size={20}
+                    color="#000"
+                    onPress={showPass}
                   />
                 </TxtInputIcon>
                 {touched.password && errors.password && (

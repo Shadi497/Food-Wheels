@@ -1,8 +1,12 @@
 //React Imports
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Button } from "react-native";
 import Modal from "react-native-modal";
-import { useNavigation } from "@react-navigation/native";
+import * as Location from "expo-location";
+import { useDispatch } from "react-redux";
+
+//Actions
+import { getLocation } from "../../store/actions/authActions";
 
 //Styles
 import { ModalStyles } from "./styles";
@@ -11,8 +15,27 @@ export default function LocationModal({
   isLocationModalVisible,
   setUserLocation,
 }) {
-  const navigation = useNavigation();
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
 
+  const dispatch = useDispatch();
+
+  const loc = async () => {
+    let { status } = await Location.requestPermissionsAsync();
+    if (status !== "granted") {
+      setErrorMsg("Permission to access location was denied");
+      return;
+    }
+    let location = await Location.getCurrentPositionAsync({});
+    setLocation(location);
+    dispatch(getLocation(location.coords.longitude, location.coords.latitude));
+    setUserLocation({ isLocationModalVisible: false });
+  };
+
+  const access = () => {
+    setUserLocation({ isLocationModalVisible: true });
+    loc();
+  };
   return (
     <Modal
       isVisible={isLocationModalVisible}
@@ -27,7 +50,7 @@ export default function LocationModal({
           <Button
             color="tomato"
             title="Access Location"
-            onPress={() => navigation.replace("TrucksHome")}
+            onPress={access}
           ></Button>
           <Text
             style={ModalStyles.NoStyle}

@@ -33,9 +33,15 @@ export default function SignUp() {
     phoneNumber: 0,
   });
 
+  const [pass, setpass] = useState(false);
+
   const navigation = useNavigation();
 
   const dispatch = useDispatch();
+
+  const showPass = () => {
+    setpass(!pass);
+  };
 
   const OnSubmit = (event) => {
     event.preventDefault();
@@ -112,7 +118,14 @@ export default function SignUp() {
                     value={values.password}
                     onChangeText={handleChange("password")}
                     onBlur={() => setFieldTouched("password")}
-                    secureTextEntry={true}
+                    secureTextEntry={pass ? false : true}
+                  />
+                  <Icon
+                    type="entypo"
+                    name={pass ? "eye-with-line" : "eye"}
+                    size={20}
+                    color="#000"
+                    onPress={showPass}
                   />
                 </TxtInputIcon>
                 {touched.password && errors.password && (

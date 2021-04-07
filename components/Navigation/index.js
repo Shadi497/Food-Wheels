@@ -120,17 +120,15 @@ export const MapNavigator = () => {
         component={MapScreen}
         options={({ navigation }) => ({
           headerLeft: () => (
-            <>
-              <Icon
-                type="ionicon"
-                iconStyle={{ alignSelf: "flex-start" }}
-                name="caret-back-outline"
-                size={25}
-                onPress={() => navigation.goBack()}
-              />
-            </>
+            <Icon
+              type="ionicon"
+              iconStyle={{ alignSelf: "flex-start", color: "white" }}
+              name="caret-back-outline"
+              size={25}
+              onPress={() => navigation.goBack()}
+            />
           ),
-          headerTitle: "Food Truck Map",
+          headerTitle: "Favourite Trucks Map",
           headerStyle: {
             backgroundColor: "#ff917e",
           },
