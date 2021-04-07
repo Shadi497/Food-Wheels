@@ -39,7 +39,7 @@ export default function LocationModal({
   return (
     <Modal
       isVisible={isLocationModalVisible}
-      onBackdropPress={() => setUserLocation({ isLocationModalVisible: false })}
+      // onBackdropPress={() => setUserLocation({ isLocationModalVisible: false })}
     >
       <View style={ModalStyles.centeredView}>
         <View style={ModalStyles.modalView}>
@@ -52,12 +52,12 @@ export default function LocationModal({
             title="Access Location"
             onPress={access}
           ></Button>
-          <Text
+          {/* <Text
             style={ModalStyles.NoStyle}
             onPress={() => setUserLocation({ isLocationModalVisible: false })}
           >
             No thanks
-          </Text>
+          </Text> */}
         </View>
       </View>
     </Modal>
