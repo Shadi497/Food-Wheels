@@ -4,6 +4,7 @@ import { ScrollView, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-elements";
 import { useSelector, useDispatch } from "react-redux";
+import Fuse from "fuse.js";
 
 //Actions
 import { truckDetail } from "../../store/actions/trucksActions";
@@ -21,6 +22,7 @@ import {
   NullView,
   LabelDetailStyle,
   FoundText,
+  HeaderTxt,
 } from "./styles";
 
 export default function TrucksList() {
@@ -29,23 +31,45 @@ export default function TrucksList() {
   const [query, setQuery] = useState("");
   const trucks = useSelector((state) => state.trucksReducer.trucks);
 
-  const list = trucks
-    .filter((truck) => truck.name.toLowerCase().includes(query.toLowerCase()))
-    .map((truck) => (
-      <TruckCard
-        key={truck.id}
-        onPress={() => {
-          dispatch(truckDetail(truck.id)), navigation.navigate("Detail");
-        }}
-      >
-        <TruckImageStyle
-          source={{
-            uri: truck.image,
+  const fuse = new Fuse(trucks, {
+    keys: ["name"],
+    includeScore: true,
+  });
+
+  const results = fuse.search(query);
+
+  const list = query
+    ? results.map((result) => (
+        <TruckCard
+          key={result.item.id}
+          onPress={() => {
+            dispatch(truckDetail(result.item.id)),
+              navigation.navigate("Detail");
           }}
-        />
-        <TruckLabelStyle>{truck.name}</TruckLabelStyle>
-      </TruckCard>
-    ));
+        >
+          <TruckImageStyle
+            source={{
+              uri: result.item.image,
+            }}
+          />
+          <TruckLabelStyle>{result.item.name}</TruckLabelStyle>
+        </TruckCard>
+      ))
+    : trucks.map((truck) => (
+        <TruckCard
+          key={truck.id}
+          onPress={() => {
+            dispatch(truckDetail(truck.id)), navigation.navigate("Detail");
+          }}
+        >
+          <TruckImageStyle
+            source={{
+              uri: truck.image,
+            }}
+          />
+          <TruckLabelStyle>{truck.name}</TruckLabelStyle>
+        </TruckCard>
+      ));
 
   return (
     <MainView>
@@ -58,6 +82,7 @@ export default function TrucksList() {
             onPress={() => navigation.goBack()}
           />
         </Header>
+        <HeaderTxt>All Food Trucks</HeaderTxt>
         <Search>
           <Icon type="ionicon" name="search-sharp" size={25} />
           <TextInput

@@ -18,6 +18,12 @@ export const MainView = styled.View`
   height: 100%;
 `;
 
+export const HeaderTxt = styled.Text`
+  text-align: center;
+  font-weight: bold;
+  font-size: 19px;
+`;
+
 export const TruckCard = styled.TouchableOpacity`
   background-color: white;
   flex-direction: row;
@@ -38,6 +44,7 @@ export const Header = styled.View`
   align-items: flex-start;
   margin-left: 5%;
   margin-top: 15%;
+  flex-direction: row;
 `;
 
 export const MiniListView = styled.View`

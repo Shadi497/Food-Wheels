@@ -34,8 +34,6 @@ export const Signup = styled.View`
 export const TxtInputIcon = styled.View`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const AuthTextInput = styled.TextInput`
