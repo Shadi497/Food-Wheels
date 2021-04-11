@@ -35,9 +35,15 @@ export const TruckCard = styled.TouchableOpacity`
 `;
 
 export const Header = styled.View`
-  align-items: flex-start;
   margin-left: 5%;
   margin-top: 15%;
+  flex-direction: row;
+`;
+
+export const HeaderTxt = styled.Text`
+  font-weight: bold;
+  font-size: 19px;
+  text-align: center;
 `;
 
 export const ListView = styled.View`

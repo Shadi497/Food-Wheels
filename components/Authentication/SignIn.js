@@ -60,10 +60,7 @@ export default function SignIn() {
           onSubmit={(values) => setUser(values)}
           validationSchema={yup.object().shape({
             username: yup.string().required("Please, provide your user name!"),
-            password: yup
-              .string()
-              .min(8, "Password must be more than 8 chars.")
-              .required("Password is required!"),
+            password: yup.string().required("Password is required!"),
           })}
         >
           {({
@@ -110,6 +107,7 @@ export default function SignIn() {
                     onChangeText={handleChange("password")}
                     onBlur={() => setFieldTouched("password")}
                     secureTextEntry={pass ? false : true}
+                    inlineImageLeft="username"
                   />
                   <Icon
                     type="entypo"
