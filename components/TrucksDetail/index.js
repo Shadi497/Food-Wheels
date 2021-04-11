@@ -9,6 +9,8 @@ import {
 import { Icon } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import { Platform } from "react-native";
+import moment from "moment";
 
 //Actions
 import { follow, unfollow, profile } from "../../store/actions/authActions";
@@ -23,17 +25,30 @@ import {
   LabelDetailStyle,
   IconView,
   InfoView,
+  OpenTxtStyle,
+  OpenStyle,
+  OpenHStyle,
+  OpenPressView,
+  OpenView,
+  SubMenuStyle,
+  MenuView,
+  MenuStyle,
 } from "./styles";
-import { Platform } from "react-native";
 
 export default function TrucksDetail() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const truckDetail = useSelector((state) => state.trucksReducer.truckDetail);
+  const truckHours = useSelector((state) => state.trucksReducer.truckHours);
+  const truckMenu = useSelector((state) => state.trucksReducer.truckMenu);
   const user = useSelector((state) => state.authReducer.user);
   const checkProfile = useSelector((state) => state.authReducer.profile);
 
   const [refreshing, setRefreshing] = useState(false);
+
+  const [show, setShow] = useState(false);
+
+  const [showmenu, setShowMenu] = useState(false);
 
   const scheme = Platform.select({ ios: "maps:0,0?q=", android: "geo:0,0?q=" });
   const latLng = `${
@@ -92,6 +107,33 @@ export default function TrucksDetail() {
 
   const Insta = () => Linking.openURL(truckDetail.instagram);
 
+  const trucktime =
+    truckHours.length > 0 &&
+    truckHours.map((hour) => (
+      <OpenStyle key={hour.id}>
+        <OpenHStyle>{hour.days}</OpenHStyle>
+        <OpenHStyle>{`${moment(hour.openTime, "h:mm:ss").format(
+          "hh:mm A"
+        )} - ${moment(hour.closeTime, "h:mm:ss").format(
+          "hh:mm A"
+        )} `}</OpenHStyle>
+      </OpenStyle>
+    ));
+
+  const truckmenu =
+    Object.keys(truckMenu).length > 0 &&
+    truckMenu.FoodCategories.map((menu) => (
+      <OpenView key={menu.id}>
+        <SubMenuStyle>{menu.name}</SubMenuStyle>
+        {menu.FoodItems.map((item) => (
+          <MenuView key={item.id}>
+            <MenuStyle>{item.name}</MenuStyle>
+            <MenuStyle>{`${item.price} BD`}</MenuStyle>
+          </MenuView>
+        ))}
+      </OpenView>
+    ));
+
   return (
     <MainView>
       <ScrollView
@@ -124,19 +166,49 @@ export default function TrucksDetail() {
         </ImgView>
         <TruckNameStyle>{truckDetail.name}</TruckNameStyle>
         <LabelDetailStyle>{truckDetail.description}</LabelDetailStyle>
+
         <InfoView>
           <IconView onPress={Insta}>
             <Icon
               type="font-awesome"
               name="instagram"
-              size={35}
+              size={28}
               color="tomato"
             />
           </IconView>
           <IconView onPress={Maps}>
-            <Icon type="entypo" name="location" size={35} color="tomato" />
+            <Icon type="entypo" name="location" size={28} color="tomato" />
           </IconView>
         </InfoView>
+
+        <OpenPressView onPress={() => setShow(!show)}>
+          <Icon type="font-awesome" name="clock-o" size={20} color="tomato" />
+          <OpenTxtStyle> Opening Hours </OpenTxtStyle>
+          <Icon
+            type="font-awesome"
+            name={!show ? "chevron-down" : "chevron-up"}
+            size={15}
+            color="tomato"
+          />
+        </OpenPressView>
+        {show && trucktime}
+
+        <OpenPressView onPress={() => setShowMenu(!showmenu)}>
+          <Icon
+            type="material"
+            name="restaurant-menu"
+            size={20}
+            color="tomato"
+          />
+          <OpenTxtStyle> Menu </OpenTxtStyle>
+          <Icon
+            type="font-awesome"
+            name={!showmenu ? "chevron-down" : "chevron-up"}
+            size={15}
+            color="tomato"
+          />
+        </OpenPressView>
+        {showmenu && truckmenu}
       </ScrollView>
     </MainView>
   );

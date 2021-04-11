@@ -49,7 +49,7 @@ export default function TrucksHome() {
             View More
           </More>
         </View>
-        <MiniList trucks={trucks.slice(0, 2)} />
+        <MiniList trucks={trucks.slice(0, 3)} />
       </ScrollView>
     </MainView>
   );

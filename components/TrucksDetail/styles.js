@@ -23,7 +23,37 @@ export const TruckNameStyle = styled.Text`
   align-self: center;
   font-size: 25px;
   font-weight: bold;
-  margin-top: 12%;
+  margin-top: 4%;
+`;
+
+export const OpenTxtStyle = styled.Text`
+  align-self: center;
+  font-size: 18px;
+  font-weight: bold;
+`;
+
+export const OpenHStyle = styled.Text`
+  align-self: center;
+  font-size: 13px;
+  margin-right: 5%;
+`;
+
+export const MenuStyle = styled.Text`
+  align-self: center;
+  font-size: 15px;
+  margin-top: 5%;
+`;
+
+export const SubMenuStyle = styled.Text`
+  align-self: center;
+  font-size: 17px;
+  font-weight: bold;
+`;
+
+export const OpenStyle = styled.View`
+  flex-direction: row;
+  margin-top: 4%;
+  justify-content: center;
 `;
 
 export const TruckImageStyle = styled.Image`
@@ -35,12 +65,34 @@ export const TruckImageStyle = styled.Image`
 `;
 
 export const ImgView = styled.View`
-  margin-top: 10%;
+  margin-top: 2%;
   shadow-color: black;
   shadow-offset: 2px 10px;
   shadow-opacity: 0.37;
   shadow-radius: 13.16px;
   elevation: 5;
+`;
+
+export const OpenView = styled.View`
+  flex-direction: column;
+  margin-top: 4%;
+  margin-bottom: 3%;
+  justify-content: center;
+`;
+
+export const MenuView = styled.View`
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 80%;
+  align-self: center;
+`;
+
+export const OpenPressView = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6%;
+  margin-bottom: 4%;
 `;
 
 export const LabelDetailStyle = styled.Text`
@@ -51,14 +103,14 @@ export const LabelDetailStyle = styled.Text`
 `;
 
 export const IconView = styled.TouchableOpacity`
-  flex-direction: row;
-  margin-top: 3%;
-  margin-bottom: 3%;
   align-items: center;
 `;
 
 export const InfoView = styled.View`
-  margin-top: 10%;
-  margin-bottom: 10%;
-  align-items: center;
+  margin-top: 7%;
+  margin-bottom: 3%;
+  width: 40%;
+  justify-content: space-evenly;
+  align-self: center;
+  flex-direction: row;
 `;
