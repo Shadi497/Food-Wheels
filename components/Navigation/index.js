@@ -122,7 +122,7 @@ export const MapNavigator = () => {
           headerLeft: () => (
             <Icon
               type="ionicon"
-              iconStyle={{ alignSelf: "flex-start", color: "white" }}
+              iconStyle={{ marginLeft: 15, color: "white" }}
               name="caret-back-outline"
               size={25}
               onPress={() => navigation.goBack()}

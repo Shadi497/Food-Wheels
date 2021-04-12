@@ -5,18 +5,26 @@ export const Label = styled.Text`
   font-size: 22px;
   align-self: center;
   font-weight: bold;
-  margin-bottom: 15%;
+  margin: 5% 0 15% 0;
 `;
 
 export const BtnView = styled.View`
-  margin-top: 8%;
   height: 90%;
+`;
+
+export const TruckImageStyle = styled.Image`
+  align-self: center;
+  width: 43%;
+  height: 90px;
+  border-radius: 30px;
+  resize-mode: contain;
 `;
 
 export const style = StyleSheet.create({
   marker: {
-    width: 30,
-    height: 30,
+    width: 35,
+    height: 35,
+    borderRadius: 10,
   },
 });
 
@@ -28,11 +36,9 @@ export const ModalStyles = StyleSheet.create({
   },
   modalView: {
     width: "65%",
-    height: "40%",
-    // margin: 20,
+    height: "55%",
     backgroundColor: "white",
     borderRadius: 20,
-    // paddingTop: 35,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

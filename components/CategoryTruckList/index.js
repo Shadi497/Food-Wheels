@@ -4,7 +4,6 @@ import { ScrollView, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Icon } from "react-native-elements";
 import { useSelector, useDispatch } from "react-redux";
-import Fuse from "fuse.js";
 
 //Actions
 import { truckDetail } from "../../store/actions/trucksActions";
@@ -31,47 +30,23 @@ export default function CategoryTruckList() {
   const [query, setQuery] = useState("");
   const trucks = useSelector((state) => state.categorytruckReducer.trucks);
 
-  const fuse = new Fuse(trucks.FoodTrucks, {
-    keys: ["name"],
-    includeScore: true,
-  });
-
-  const results = fuse.search(query);
-
   let list;
   if (trucks.FoodTrucks && trucks.FoodTrucks.length > 0) {
-    list = query
-      ? results.map((result) => (
-          <TruckCard
-            key={result.item.id}
-            onPress={() => {
-              dispatch(truckDetail(result.item.id)),
-                navigation.navigate("Detail");
-            }}
-          >
-            <TruckImageStyle
-              source={{
-                uri: result.item.image,
-              }}
-            />
-            <TruckLabelStyle>{result.item.name}</TruckLabelStyle>
-          </TruckCard>
-        ))
-      : trucks.FoodTrucks.map((truck) => (
-          <TruckCard
-            key={truck.id}
-            onPress={() => {
-              dispatch(truckDetail(truck.id)), navigation.navigate("Detail");
-            }}
-          >
-            <TruckImageStyle
-              source={{
-                uri: truck.image,
-              }}
-            />
-            <TruckLabelStyle>{truck.name}</TruckLabelStyle>
-          </TruckCard>
-        ));
+    list = trucks.FoodTrucks.map((truck) => (
+      <TruckCard
+        key={truck.id}
+        onPress={() => {
+          dispatch(truckDetail(truck.id)), navigation.navigate("Detail");
+        }}
+      >
+        <TruckImageStyle
+          source={{
+            uri: truck.image,
+          }}
+        />
+        <TruckLabelStyle>{truck.name}</TruckLabelStyle>
+      </TruckCard>
+    ));
   }
 
   return (

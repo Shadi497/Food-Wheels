@@ -33,6 +33,8 @@ import {
   SubMenuStyle,
   MenuView,
   MenuStyle,
+  TruckItemStyle,
+  MenuImageView,
 } from "./styles";
 
 export default function TrucksDetail() {
@@ -126,10 +128,17 @@ export default function TrucksDetail() {
       <OpenView key={menu.id}>
         <SubMenuStyle>{menu.name}</SubMenuStyle>
         {menu.FoodItems.map((item) => (
-          <MenuView key={item.id}>
-            <MenuStyle>{item.name}</MenuStyle>
-            <MenuStyle>{`${item.price} BD`}</MenuStyle>
-          </MenuView>
+          <MenuImageView key={item.id}>
+            <MenuView>
+              <MenuStyle>{item.name}</MenuStyle>
+              <MenuStyle>{`${item.price} BD`}</MenuStyle>
+            </MenuView>
+            <TruckItemStyle
+              source={{
+                uri: truckDetail.image,
+              }}
+            />
+          </MenuImageView>
         ))}
       </OpenView>
     ));

@@ -1,6 +1,6 @@
 //React Imports
 import React, { useState, useEffect } from "react";
-import { View, ActivityIndicator, Image } from "react-native";
+import { View, ActivityIndicator, Image, Text } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { useSelector } from "react-redux";
 
@@ -50,11 +50,11 @@ export default function MapScreen() {
         onPress={() => handleSelectedMarker(foodTruck)}
         title={foodTruck.name}
         key={foodTruck.id}
+        style={style.marker}
       >
         <Image
           source={{
-            uri:
-              "https://cdn2.iconfinder.com/data/icons/modifiers-add-on-1-colored/48/JD-34-512.png",
+            uri: foodTruck.image,
           }}
           style={style.marker}
         />

@@ -4,14 +4,13 @@ import { useDispatch } from "react-redux";
 import { Button } from "react-native-paper";
 import { Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
-import {Linking, Modal, View, ActivityIndicator } from "react-native";
+import { Linking, Modal, View, ActivityIndicator } from "react-native";
 
 //Actions
 import { truckDetail } from "../../store/actions/trucksActions";
 
 //Styles
-import { BtnView, Label, ModalStyles } from "./styles";
-
+import { BtnView, Label, ModalStyles, TruckImageStyle } from "./styles";
 
 export default function UpdateModal({
   modalVisible,
@@ -54,6 +53,11 @@ export default function UpdateModal({
                 iconStyle={{ alignSelf: "flex-end" }}
                 onPress={() => setModalVisible(!modalVisible)}
               />
+              <TruckImageStyle
+                source={{
+                  uri: foodTruck.image,
+                }}
+              />
               <Label>{foodTruck.name}</Label>
               <BtnView>
                 <Button
@@ -61,7 +65,7 @@ export default function UpdateModal({
                   style={{
                     width: "50%",
                     alignSelf: "center",
-                    height: "17%",
+                    height: "13%",
                     backgroundColor: "tomato",
                     borderRadius: 25,
                   }}
@@ -85,7 +89,7 @@ export default function UpdateModal({
                   style={{
                     width: "50%",
                     alignSelf: "center",
-                    height: "17%",
+                    height: "13%",
                     marginTop: "8%",
                     backgroundColor: "tomato",
                     borderRadius: 25,
