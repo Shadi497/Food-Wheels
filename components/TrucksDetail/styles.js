@@ -39,9 +39,10 @@ export const OpenHStyle = styled.Text`
 `;
 
 export const MenuStyle = styled.Text`
-  align-self: center;
   font-size: 15px;
-  margin-top: 5%;
+  margin: 5% 0 2% 0;
+  font-weight: bold;
+  color: #696969;
 `;
 
 export const SubMenuStyle = styled.Text`
@@ -54,6 +55,14 @@ export const OpenStyle = styled.View`
   flex-direction: row;
   margin-top: 4%;
   justify-content: center;
+`;
+
+export const TruckItemStyle = styled.Image`
+  width: 25%;
+  height: 85%;
+  border-radius: 10px;
+  resize-mode: contain;
+  align-self: auto;
 `;
 
 export const TruckImageStyle = styled.Image`
@@ -80,11 +89,20 @@ export const OpenView = styled.View`
   justify-content: center;
 `;
 
-export const MenuView = styled.View`
+export const MenuImageView = styled.View`
   flex-direction: row;
-  justify-content: space-evenly;
-  width: 80%;
+  justify-content: space-around;
   align-self: center;
+  margin-top: 4%;
+  width: 80%;
+  border-bottom-color: #c0c0c0;
+  border-bottom-width: 1px;
+`;
+
+export const MenuView = styled.View`
+  flex-direction: column;
+  align-self: center;
+  width: 50%;
 `;
 
 export const OpenPressView = styled.TouchableOpacity`
