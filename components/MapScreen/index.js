@@ -58,6 +58,7 @@ export default function MapScreen() {
           }}
           style={style.marker}
         />
+        <Text></Text>
       </Marker>
     ));
 
@@ -83,6 +84,7 @@ export default function MapScreen() {
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
           foodTruck={favorite}
+          location={location}
         />
       </>
     );

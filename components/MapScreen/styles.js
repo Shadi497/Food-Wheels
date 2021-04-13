@@ -5,11 +5,20 @@ export const Label = styled.Text`
   font-size: 22px;
   align-self: center;
   font-weight: bold;
-  margin: 5% 0 15% 0;
+  margin-top: 5%;
+`;
+
+export const Distance = styled.Text`
+  font-size: 15px;
+  align-self: center;
+  color: #696969;
+  font-weight: bold;
+  margin-top: 3%;
 `;
 
 export const BtnView = styled.View`
   height: 90%;
+  margin-top: 12%;
 `;
 
 export const TruckImageStyle = styled.Image`

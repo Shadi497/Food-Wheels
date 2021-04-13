@@ -35,11 +35,14 @@ import {
   MenuStyle,
   TruckItemStyle,
   MenuImageView,
+  DistanceView,
+  Distance,
 } from "./styles";
 
 export default function TrucksDetail() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const location = useSelector((state) => state.authReducer.location);
   const truckDetail = useSelector((state) => state.trucksReducer.truckDetail);
   const truckHours = useSelector((state) => state.trucksReducer.truckHours);
   const truckMenu = useSelector((state) => state.trucksReducer.truckMenu);
@@ -143,6 +146,28 @@ export default function TrucksDetail() {
       </OpenView>
     ));
 
+  function distance(lat1, lon1, lat2, lon2) {
+    if (lat1 == lat2 && lon1 == lon2) {
+      return 0;
+    } else {
+      var radlat1 = (Math.PI * lat1) / 180;
+      var radlat2 = (Math.PI * lat2) / 180;
+      var theta = lon1 - lon2;
+      var radtheta = (Math.PI * theta) / 180;
+      var dist =
+        Math.sin(radlat1) * Math.sin(radlat2) +
+        Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+      if (dist > 1) {
+        dist = 1;
+      }
+      dist = Math.acos(dist);
+      dist = (dist * 180) / Math.PI;
+      dist = dist * 60 * 1.1515;
+      dist = dist * 1.609344;
+      return parseInt(dist);
+    }
+  }
+
   return (
     <MainView>
       <ScrollView
@@ -173,7 +198,18 @@ export default function TrucksDetail() {
             }}
           />
         </ImgView>
-        <TruckNameStyle>{truckDetail.name}</TruckNameStyle>
+        <DistanceView>
+          <TruckNameStyle>{truckDetail.name}</TruckNameStyle>
+          {location && (
+            <Distance>{`(${distance(
+              truckDetail.location && truckDetail.location.coordinates[1],
+              truckDetail.location && truckDetail.location.coordinates[0],
+              location && location.latitude,
+              location && location.longitude
+            )} km)`}</Distance>
+          )}
+        </DistanceView>
+
         <LabelDetailStyle>{truckDetail.description}</LabelDetailStyle>
 
         <InfoView>

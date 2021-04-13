@@ -12,6 +12,12 @@ export const Header = styled.View`
   flex-direction: row;
 `;
 
+export const DistanceView = styled.View`
+  align-self: center;
+  margin-top: 6%;
+  flex-direction: row;
+`;
+
 export const ImageStyle = styled.Image`
   margin-top: 5px;
   width: 90%;
@@ -19,11 +25,18 @@ export const ImageStyle = styled.Image`
   border-radius: 10px;
 `;
 
+export const Distance = styled.Text`
+  font-size: 13px;
+  margin-left: 3%;
+  align-self: center;
+  color: #696969;
+  font-weight: bold;
+`;
+
 export const TruckNameStyle = styled.Text`
   align-self: center;
   font-size: 25px;
   font-weight: bold;
-  margin-top: 4%;
 `;
 
 export const OpenTxtStyle = styled.Text`
